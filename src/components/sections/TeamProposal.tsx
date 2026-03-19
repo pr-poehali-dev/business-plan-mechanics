@@ -152,9 +152,23 @@ function TeamSection() {
                 <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 text-3xl" style={{ background: 'rgba(255,215,0,0.1)' }}>
                   🚗
                 </div>
-                <div>
+                <div className="flex-1">
                   <div className="font-bold text-white text-xl">Автор концепции</div>
-                  <div className="text-sm mt-1" style={{ color: 'var(--ya-text-secondary)' }}>Product thinker · Стратегия · Авторынок РФ</div>
+                  <div className="text-sm mt-1 mb-3" style={{ color: 'var(--ya-text-secondary)' }}>Product thinker · Стратегия · Авторынок РФ</div>
+                  <div className="flex flex-wrap gap-2">
+                    <a href="mailto:your@email.com" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(255,215,0,0.1)', color: 'var(--ya-yellow)' }}>
+                      <Icon name="Mail" size={12} />
+                      your@email.com
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(79,158,255,0.1)', color: '#4F9EFF' }}>
+                      <Icon name="Linkedin" size={12} />
+                      LinkedIn
+                    </a>
+                    <a href="https://t.me/yourtg" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.6)' }}>
+                      <Icon name="Send" size={12} />
+                      Telegram
+                    </a>
+                  </div>
                 </div>
               </div>
               <div className="space-y-3">

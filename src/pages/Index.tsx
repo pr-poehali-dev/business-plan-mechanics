@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NAV_SECTIONS } from "@/components/sections/shared";
 import HeroSection from "@/components/sections/HeroSection";
+import SummarySection from "@/components/sections/SummarySection";
 import ContentSections from "@/components/sections/ContentSections";
 import BusinessSections from "@/components/sections/BusinessSections";
 import TeamProposal from "@/components/sections/TeamProposal";
@@ -70,6 +71,7 @@ export default function Index() {
     <div className="min-h-screen" style={{ background: 'var(--ya-black)' }}>
       <Nav active={active} />
       <HeroSection />
+      <SummarySection />
       <BusinessSections />
       <ContentSections />
       <TeamProposal />

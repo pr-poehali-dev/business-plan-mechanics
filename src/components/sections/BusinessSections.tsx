@@ -69,10 +69,10 @@ function FinanceSection() {
     <section id="finance" className="ya-section" style={{ background: 'var(--ya-black)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
-          <SectionLabel>Раздел 2 · Финансы</SectionLabel>
+          <SectionLabel>Глава 2 · Финансовая стратегия</SectionLabel>
           <SectionTitle>Финансовая модель<br />и тарифы</SectionTitle>
           <SectionSubtitle>
-            Подписочная модель обеспечивает стабильную рекуррентную выручку вне зависимости от сезонности и количества реальных инцидентов.
+            Подписочная модель обеспечивает рекуррентный доход даже в периоды отсутствия инцидентов. B2B сегмент растёт с темпом <strong style={{ color: 'var(--ya-yellow)' }}>7.28% CAGR</strong> — быстрее среднерыночного, за счёт логистики последней мили.
           </SectionSubtitle>
         </div>
 

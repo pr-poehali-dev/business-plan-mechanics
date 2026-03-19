@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 
 export const NAV_SECTIONS = [
-  { id: "hero",       label: "О продукте" },
-  { id: "operations", label: "Операции" },
+  { id: "hero",       label: "Главная" },
+  { id: "summary",    label: "Резюме" },
   { id: "finance",    label: "Финансы" },
+  { id: "operations", label: "Техплан" },
   { id: "marketing",  label: "Маркетинг" },
   { id: "risks",      label: "Риски" },
-  { id: "team",       label: "Команда" },
-  { id: "pitch",      label: "КРI" },
+  { id: "pitch",      label: "KPI" },
+  { id: "team",       label: "Об авторе" },
 ];
 
 export function useInView(threshold = 0.12) {

@@ -3,8 +3,8 @@ import Icon from "@/components/ui/icon";
 const STATS = [
   { value: "$32.8B", label: "мировой рынок, 2026" },
   { value: "5.6%", label: "CAGR до 2035 года" },
-  { value: "45М+", label: "автомобилей в России" },
-  { value: "15 мин", label: "цель прибытия экипажа" },
+  { value: "82%", label: "водителей РФ в Навигаторе" },
+  { value: "30 мин", label: "SLA прибытия в городе" },
 ];
 
 export default function HeroSection() {
@@ -32,7 +32,7 @@ export default function HeroSection() {
           </p>
 
           <p className="text-base mb-6 max-w-xl ya-anim-up delay-300" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-            Сервис экстренной и плановой помощи автомобилистам — от замены колеса в -30°C до эвакуации тяжёлой техники с обледенелого склона. Глубокая интеграция с Навигатором и Яндекс Авто.
+            Миссия — обеспечить бесперебойное движение и безопасность на дорогах России. Предиктивная помощь через телематику Яндекс Авто, охват 82% водителей через Навигатор, эвакуация до 60 тонн с обледенелых склонов.
           </p>
 
           <div className="flex flex-wrap gap-3 mb-4 ya-anim-up delay-300">
@@ -51,8 +51,8 @@ export default function HeroSection() {
           </div>
 
           <div className="flex flex-wrap gap-3 mb-16 ya-anim-up delay-400">
-            <a href="#operations" className="ya-btn-primary">
-              Читать план
+            <a href="#summary" className="ya-btn-primary">
+              Executive Summary
               <Icon name="ArrowDown" size={16} />
             </a>
             <a href="#pitch" className="ya-btn-secondary">
