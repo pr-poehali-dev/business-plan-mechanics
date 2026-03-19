@@ -2,10 +2,11 @@ import Icon from "@/components/ui/icon";
 import { SectionLabel, SectionTitle, useInView } from "./shared";
 
 const SUMMARY_CHAPTERS = [
-  { icon: "Cpu",         label: "Глава 1", title: "Технический план",      href: "#operations" },
-  { icon: "BarChart2",   label: "Глава 2", title: "Финансовая стратегия",  href: "#finance"    },
-  { icon: "Megaphone",   label: "Глава 3", title: "Маркетинговый план",    href: "#marketing"  },
-  { icon: "AlertTriangle", label: "Глава 4", title: "Анализ рисков",       href: "#risks"      },
+  { icon: "Cpu",           label: "Глава 1", title: "Технический план",      href: "#operations"       },
+  { icon: "BarChart2",     label: "Глава 2", title: "Финансовая стратегия",  href: "#finance"          },
+  { icon: "Wrench",        label: "Глава 3", title: "Личный механик",        href: "#lichniy-mechanik" },
+  { icon: "Megaphone",     label: "Глава 4", title: "Маркетинговый план",    href: "#marketing"        },
+  { icon: "AlertTriangle", label: "Глава 5", title: "Анализ рисков",        href: "#risks"            },
 ];
 
 const KEY_FACTS = [
@@ -64,7 +65,7 @@ export default function SummarySection() {
                 Мировой рынок помощи на дорогах — <strong className="text-white">$32.8 млрд</strong> с ежегодным ростом <strong className="text-white">5.6%</strong>. B2B сегмент (грузовые перевозки) растёт быстрее — <strong className="text-white">7.28% CAGR</strong> — за счёт бума логистики последней мили.
               </p>
               <p className="text-base" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
-                Конкурентное преимущество: навигационные сервисы видят каждый автомобиль на дороге и знают условия маршрута. Это позволяет <strong className="text-white">предсказывать инциденты до их возникновения</strong> и отправлять помощь превентивно — чего не умеет ни один конкурент на рынке.
+                Платформа включает два продукта: <strong className="text-white">экстренная помощь на дороге</strong> (эвакуация, замена колеса, запуск в мороз) и <strong className="text-white">«Личный механик»</strong> — система умного обслуживания авто, которая следит за состоянием автомобиля и напоминает о плановом ТО. Это позволяет <strong className="text-white">предсказывать инциденты до их возникновения</strong> — чего не умеет ни один конкурент на рынке.
               </p>
             </div>
             <div className="space-y-3">
