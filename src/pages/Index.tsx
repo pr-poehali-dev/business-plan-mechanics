@@ -12,10 +12,10 @@ function Nav({ active }: { active: string }) {
       <div className="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center border" style={{ borderColor: 'hsl(28 100% 55%)', background: 'rgba(255,140,30,0.1)' }}>
-            <Icon name="Settings2" size={16} style={{ color: 'hsl(28 100% 55%)' }} />
+            <Icon name="Wrench" size={16} style={{ color: 'hsl(28 100% 55%)' }} />
           </div>
-          <span className="font-bold text-white text-sm" style={{ fontFamily: 'Oswald, sans-serif', letterSpacing: '0.2em' }}>МЕХАНИКИ</span>
-          <span className="tech-tag ml-2">БИЗНЕС-ПЛАН</span>
+          <span className="font-bold text-white text-sm" style={{ fontFamily: 'Oswald, sans-serif', letterSpacing: '0.2em' }}>МЕХАНИКА</span>
+          <span className="tech-tag ml-2">МАСТЕР-ПЛАН</span>
         </div>
         <div className="hidden md:flex items-center gap-5">
           {NAV_SECTIONS.map((s) => (
