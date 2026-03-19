@@ -5,6 +5,7 @@ import SummarySection from "@/components/sections/SummarySection";
 import ContentSections from "@/components/sections/ContentSections";
 import BusinessSections from "@/components/sections/BusinessSections";
 import TeamProposal from "@/components/sections/TeamProposal";
+import LichniyMechanik from "@/components/sections/LichniyMechanik";
 
 function Nav({ active }: { active: string }) {
   const [scrolled, setScrolled] = useState(false);
@@ -74,6 +75,7 @@ export default function Index() {
       <SummarySection />
       <BusinessSections />
       <ContentSections />
+      <LichniyMechanik />
       <TeamProposal />
     </div>
   );
