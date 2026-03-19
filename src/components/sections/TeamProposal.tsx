@@ -153,12 +153,13 @@ function TeamSection() {
                   🚗
                 </div>
                 <div className="flex-1">
-                  <div className="font-bold text-white text-xl">Автор концепции</div>
-                  <div className="text-sm mt-1 mb-3" style={{ color: 'var(--ya-text-secondary)' }}>Product thinker · Стратегия · Авторынок РФ</div>
+                  <div className="font-bold text-white text-xl">Беломестнов Геннадий Сергеевич</div>
+                  <div className="text-xs mt-0.5 mb-1" style={{ color: 'var(--ya-text-muted)' }}>ИНН 751601068341</div>
+                  <div className="text-sm mb-3" style={{ color: 'var(--ya-text-secondary)' }}>Product thinker · Стратегия · Авторынок РФ</div>
                   <div className="flex flex-wrap gap-2">
-                    <a href="mailto:bgs1990st@yandex.ru" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(255,215,0,0.1)', color: 'var(--ya-yellow)' }}>
+                    <a href="mailto:bgs1990st@mail.ru" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(255,215,0,0.1)', color: 'var(--ya-yellow)' }}>
                       <Icon name="Mail" size={12} />
-                      bgs1990st@yandex.ru
+                      bgs1990st@mail.ru
                     </a>
                     <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(79,158,255,0.1)', color: '#4F9EFF' }}>
                       <Icon name="Linkedin" size={12} />
@@ -210,7 +211,7 @@ function TeamSection() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
-              <a href="mailto:bgs1990st@yandex.ru" className="ya-btn-primary">
+              <a href="mailto:bgs1990st@mail.ru" className="ya-btn-primary">
                 Связаться
                 <Icon name="Mail" size={16} />
               </a>
