@@ -1,145 +1,124 @@
 import Icon from "@/components/ui/icon";
-import { SectionLabel, SectionTitle, useInView } from "./shared";
-
-const SUMMARY_CHAPTERS = [
-  { icon: "Cpu",           label: "Глава 1", title: "Технический план",      href: "#operations"       },
-  { icon: "BarChart2",     label: "Глава 2", title: "Финансовая стратегия",  href: "#finance"          },
-  { icon: "Wrench",        label: "Глава 3", title: "Личный механик",        href: "#lichniy-mechanik" },
-  { icon: "Megaphone",     label: "Глава 4", title: "Маркетинговый план",    href: "#marketing"        },
-  { icon: "AlertTriangle", label: "Глава 5", title: "Анализ рисков",        href: "#risks"            },
-];
+import { SectionLabel, SectionTitle, ScrollReveal } from "./shared";
 
 const KEY_FACTS = [
-  { value: "$32.8B",  label: "объём мирового рынка", color: "#FFD700" },
-  { value: "5.60%",  label: "CAGR до 2035 года", color: "#4F9EFF" },
-  { value: "7.28%",  label: "CAGR B2B сегмента", color: "#A78BFA" },
-  { value: "82%",    label: "водителей РФ в Навигаторе", color: "#FC3F1D" },
-  { value: "30 мин", label: "SLA в городах", color: "#FFD700" },
-  { value: "60 мин", label: "SLA на трассах", color: "#4F9EFF" },
+  { value: "$32.8B", label: "объём мирового рынка", color: "var(--m-yellow)" },
+  { value: "5.60%",  label: "CAGR до 2035 года",    color: "var(--m-blue)"   },
+  { value: "7.28%",  label: "CAGR B2B сегмента",    color: "var(--m-purple)" },
+  { value: "82%",    label: "водителей РФ в Навигаторе", color: "var(--m-red)" },
+  { value: "30 мин", label: "SLA в городах",         color: "var(--m-yellow)" },
+  { value: "60 мин", label: "SLA на трассах",        color: "var(--m-blue)"   },
 ];
 
 const DRIVERS = [
-  {
-    icon: "Car",
-    title: "Старение автопарка",
-    desc: "Средний возраст автомобилей в России — 14 лет. Вероятность поломки растёт экспоненциально после 7 лет эксплуатации.",
-  },
-  {
-    icon: "Cpu",
-    title: "Рост сложности электроники",
-    desc: "Современный автомобиль содержит 100+ ЭБУ. Самостоятельная диагностика невозможна — нужен специалист с оборудованием.",
-  },
-  {
-    icon: "Package",
-    title: "Логистика последней мили",
-    desc: "B2B сегмент растёт с темпом 7.28% CAGR. Простой грузовика в РФ стоит ₽25 000–80 000 в сутки.",
-  },
-  {
-    icon: "Shield",
-    title: "Запрос на безопасность",
-    desc: "После пандемии резко вырос спрос на автопутешествия. Семьи готовы платить за спокойствие, а не экономить на безопасности.",
-  },
+  { icon: "Car",      title: "Старение автопарка",         desc: "Средний возраст автомобилей в России — 14 лет. Вероятность поломки растёт экспоненциально после 7 лет эксплуатации." },
+  { icon: "Cpu",      title: "Рост сложности электроники", desc: "Современный автомобиль содержит 100+ ЭБУ. Самостоятельная диагностика невозможна — нужен специалист с оборудованием." },
+  { icon: "Package",  title: "Логистика последней мили",   desc: "B2B сегмент растёт с темпом 7.28% CAGR. Простой грузовика в РФ стоит ₽25 000–80 000 в сутки." },
+  { icon: "Shield",   title: "Запрос на безопасность",    desc: "После пандемии резко вырос спрос на автопутешествия. Семьи готовы платить за спокойствие, а не экономить на безопасности." },
+];
+
+const CHAPTERS = [
+  { icon: "Cpu",           label: "Глава 1", title: "Технический план",     href: "#operations"        },
+  { icon: "BarChart2",     label: "Глава 2", title: "Финансовая стратегия", href: "#finance"           },
+  { icon: "Wrench",        label: "Глава 3", title: "Личный механик",       href: "#lichniy-mechanik"  },
+  { icon: "Megaphone",     label: "Глава 4", title: "Маркетинговый план",   href: "#marketing"         },
+  { icon: "AlertTriangle", label: "Глава 5", title: "Анализ рисков",        href: "#risks"             },
 ];
 
 export default function SummarySection() {
-  const { ref, inView } = useInView();
-
   return (
-    <section id="summary" className="ya-section" style={{ background: 'var(--ya-dark)' }}>
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="summary" className="m-section" style={{ background: 'var(--m-surface)' }}>
+      <div className="max-w-7xl mx-auto px-6">
 
-        {/* ── Резюме ── */}
-        <div ref={ref} className={`mb-14 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
+        {/* Заголовок */}
+        <ScrollReveal>
           <SectionLabel>Резюме проекта</SectionLabel>
-          <SectionTitle>
-            Механики —<br />
-            <span style={{ color: 'var(--ya-yellow)' }}>бизнес-план</span>
-          </SectionTitle>
+          <SectionTitle>Механики —<br /><span style={{ color: 'var(--m-yellow)' }}>бизнес-план</span></SectionTitle>
+        </ScrollReveal>
 
-          <div className="mt-6 grid md:grid-cols-2 gap-6">
-            <div>
-              <p className="text-base mb-4" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
-                <strong className="text-white">Механики</strong> — подписочный сервис экстренной помощи на дорогах с глубокой интеграцией в навигационные и телематические системы. Продукт закрывает критический пробел: при охвате 82% водителей через навигаторы на рынке нет монетизированного сервиса физической помощи.
-              </p>
-              <p className="text-base mb-4" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
-                Мировой рынок помощи на дорогах — <strong className="text-white">$32.8 млрд</strong> с ежегодным ростом <strong className="text-white">5.6%</strong>. B2B сегмент (грузовые перевозки) растёт быстрее — <strong className="text-white">7.28% CAGR</strong> — за счёт бума логистики последней мили.
-              </p>
-              <p className="text-base" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
-                Платформа включает два продукта: <strong className="text-white">экстренная помощь на дороге</strong> (эвакуация, замена колеса, запуск в мороз) и <strong className="text-white">«Личный механик»</strong> — система умного обслуживания авто, которая следит за состоянием автомобиля и напоминает о плановом ТО. Это позволяет <strong className="text-white">предсказывать инциденты до их возникновения</strong> — чего не умеет ни один конкурент на рынке.
-              </p>
+        {/* Описание + позиционирование */}
+        <div className="grid md:grid-cols-2 gap-8 mt-10 mb-16">
+          <ScrollReveal delay={100}>
+            <p className="text-base mb-4" style={{ color: 'var(--m-text2)', lineHeight: 1.8 }}>
+              <strong className="text-white">Механики</strong> — подписочный сервис экстренной помощи на дорогах с глубокой интеграцией в навигационные и телематические системы. Продукт закрывает критический пробел: при охвате 82% водителей через навигаторы на рынке нет монетизированного сервиса физической помощи.
+            </p>
+            <p className="text-base mb-4" style={{ color: 'var(--m-text2)', lineHeight: 1.8 }}>
+              Мировой рынок — <strong className="text-white">$32.8 млрд</strong> с ростом <strong className="text-white">5.6%</strong> ежегодно. B2B сегмент растёт быстрее — <strong className="text-white">7.28% CAGR</strong>.
+            </p>
+            <p className="text-base" style={{ color: 'var(--m-text2)', lineHeight: 1.8 }}>
+              Платформа включает два продукта: <strong className="text-white">экстренная помощь на дороге</strong> и <strong className="text-white">«Личный механик»</strong> — система умного обслуживания, которая предупреждает о проблеме до её возникновения.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <div className="space-y-4">
+              {[
+                { color: 'var(--m-yellow)', label: 'МИССИЯ', text: 'Обеспечить бесперебойное движение и безопасность на дорогах России, минимизируя простои транспорта и риски для водителей.' },
+                { color: 'var(--m-blue)',   label: 'ПОЗИЦИОНИРОВАНИЕ', text: 'Не «эвакуатор по звонку», а предиктивный ассистент. Первый сервис, предлагающий помощь до того, как водитель осознал проблему.' },
+                { color: 'var(--m-red)',    label: 'КЛЮЧЕВОЙ КОНКУРЕНТ', text: 'РАМК и страховые ассистанс-службы. Их слабость — реактивность. Механики действуют проактивно через телематику.' },
+              ].map(item => (
+                <div key={item.label} className="m-card p-5">
+                  <div className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: item.color }}>{item.label}</div>
+                  <p className="text-sm" style={{ color: 'var(--m-text2)', lineHeight: 1.7 }}>{item.text}</p>
+                </div>
+              ))}
             </div>
-            <div className="space-y-3">
-              <div className="p-5 rounded-2xl" style={{ background: 'rgba(255,215,0,0.05)', border: '1px solid rgba(255,215,0,0.15)' }}>
-                <div className="text-xs font-semibold mb-2" style={{ color: 'var(--ya-yellow)', letterSpacing: '0.06em' }}>МИССИЯ</div>
-                <p className="text-sm text-white font-medium leading-relaxed">
-                  «Обеспечить бесперебойное движение и безопасность на дорогах России, минимизируя простои коммерческого транспорта и риски для семейных путешественников.»
-                </p>
-              </div>
-              <div className="p-5 rounded-2xl" style={{ background: 'rgba(79,158,255,0.05)', border: '1px solid rgba(79,158,255,0.15)' }}>
-                <div className="text-xs font-semibold mb-2" style={{ color: '#4F9EFF', letterSpacing: '0.06em' }}>СТРАТЕГИЧЕСКОЕ ПОЗИЦИОНИРОВАНИЕ</div>
-                <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-                  Не «эвакуатор по звонку», а <strong className="text-white">предиктивный ассистент</strong>, интегрированный в ежедневный маршрут. Первый сервис, который предлагает помощь до того, как водитель осознал проблему.
-                </p>
-              </div>
-              <div className="p-5 rounded-2xl" style={{ background: 'rgba(252,63,29,0.05)', border: '1px solid rgba(252,63,29,0.15)' }}>
-                <div className="text-xs font-semibold mb-2" style={{ color: '#FC3F1D', letterSpacing: '0.06em' }}>КЛЮЧЕВОЙ КОНКУРЕНТ</div>
-                <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-                  РАМК и страховые ассистанс-службы. Их слабость — <strong className="text-white">реактивность</strong>: ждут звонка. Механики действуют проактивно, используя данные телематики и навигации, недоступные конкурентам.
-                </p>
-              </div>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
 
-        {/* ── Ключевые цифры ── */}
-        <div className={`mb-14 ${inView ? 'ya-anim-up delay-200' : 'opacity-0'}`}>
-          <h3 className="text-xl font-bold text-white mb-5">Ключевые цифры рынка</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-px" style={{ background: 'var(--ya-border)', borderRadius: 16, overflow: 'hidden' }}>
+        {/* Ключевые цифры */}
+        <ScrollReveal delay={100}>
+          <h3 className="text-2xl font-black uppercase tracking-tighter text-white mb-6">Ключевые цифры рынка</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-px mb-16" style={{ borderRadius: 20, background: 'rgba(255,255,255,0.04)', overflow: 'hidden' }}>
             {KEY_FACTS.map((f) => (
-              <div key={f.label} className="px-6 py-5" style={{ background: 'var(--ya-card)' }}>
-                <div className="text-3xl font-bold mb-1" style={{ color: f.color }}>{f.value}</div>
-                <div className="text-xs" style={{ color: 'var(--ya-text-secondary)' }}>{f.label}</div>
+              <div key={f.label} className="px-7 py-6" style={{ background: 'var(--m-card)' }}>
+                <div className="text-4xl font-black mb-1" style={{ color: f.color }}>{f.value}</div>
+                <div className="text-xs uppercase tracking-widest font-bold" style={{ color: 'var(--m-text3)' }}>{f.label}</div>
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* ── Драйверы рынка ── */}
-        <div className={`mb-14 ${inView ? 'ya-anim-up delay-300' : 'opacity-0'}`}>
-          <h3 className="text-xl font-bold text-white mb-5">Драйверы роста рынка</h3>
-          <div className="grid md:grid-cols-2 gap-3">
+        {/* Драйверы */}
+        <ScrollReveal delay={150}>
+          <h3 className="text-2xl font-black uppercase tracking-tighter text-white mb-6">Драйверы роста рынка</h3>
+          <div className="grid md:grid-cols-2 gap-3 mb-16">
             {DRIVERS.map((d, i) => (
-              <div key={d.title} className={`ya-card p-5 flex gap-4 ${inView ? `ya-anim-up delay-${(i + 1) * 100 + 300}` : 'opacity-0'}`}>
-                <div className="ya-icon-circle flex-shrink-0">
-                  <Icon name={d.icon} size={20} />
+              <ScrollReveal key={d.title} delay={i * 100}>
+                <div className="m-card p-6 flex gap-4">
+                  <div className="m-icon-box flex-shrink-0">
+                    <Icon name={d.icon} size={20} />
+                  </div>
+                  <div>
+                    <div className="font-black text-white uppercase tracking-tight mb-1">{d.title}</div>
+                    <div className="text-sm" style={{ color: 'var(--m-text2)', lineHeight: 1.7 }}>{d.desc}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-semibold text-white mb-1">{d.title}</div>
-                  <div className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>{d.desc}</div>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* ── Структура документа ── */}
-        <div className={`${inView ? 'ya-anim-up delay-500' : 'opacity-0'}`}>
-          <h3 className="text-xl font-bold text-white mb-5">Структура бизнес-плана</h3>
-          <div className="grid md:grid-cols-4 gap-3">
-            {SUMMARY_CHAPTERS.map((ch) => (
-              <a key={ch.title} href={ch.href} className="ya-card p-5 block group">
-                <div className="ya-icon-circle mb-3" style={{ width: 40, height: 40, borderRadius: 10 }}>
-                  <Icon name={ch.icon} size={17} />
-                </div>
-                <div className="text-xs font-semibold mb-1" style={{ color: 'var(--ya-text-muted)', letterSpacing: '0.06em' }}>{ch.label}</div>
-                <div className="font-semibold text-white text-sm group-hover:text-yellow-400 transition-colors">{ch.title}</div>
-                <div className="mt-3">
-                  <Icon name="ArrowRight" size={14} style={{ color: 'var(--ya-yellow)' }} />
-                </div>
-              </a>
+        {/* Структура плана */}
+        <ScrollReveal delay={200}>
+          <h3 className="text-2xl font-black uppercase tracking-tighter text-white mb-6">Структура бизнес-плана</h3>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            {CHAPTERS.map((ch, i) => (
+              <ScrollReveal key={ch.title} delay={i * 80}>
+                <a href={ch.href} className="m-card p-5 block group h-full">
+                  <div className="m-icon-box mb-4" style={{ width: 40, height: 40, borderRadius: 12 }}>
+                    <Icon name={ch.icon} size={17} />
+                  </div>
+                  <div className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: 'var(--m-text3)' }}>{ch.label}</div>
+                  <div className="font-black text-white text-sm uppercase tracking-tight group-hover:text-yellow-400 transition-colors leading-snug">{ch.title}</div>
+                  <div className="mt-4">
+                    <Icon name="ArrowRight" size={13} style={{ color: 'var(--m-yellow)' }} />
+                  </div>
+                </a>
+              </ScrollReveal>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
       </div>
     </section>

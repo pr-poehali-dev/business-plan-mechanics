@@ -2,68 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=YS+Text:wght@400;500;600&family=YS+Display:wght@400;500;700&display=swap");
-
 @layer base {
   :root {
-    --background: 0 0% 7%;
+    --background: 0 0% 4%;
     --foreground: 0 0% 95%;
-
-    --card: 0 0% 10%;
+    --card: 0 0% 9%;
     --card-foreground: 0 0% 95%;
-
-    --popover: 0 0% 10%;
+    --popover: 0 0% 9%;
     --popover-foreground: 0 0% 95%;
-
-    --primary: 38 100% 50%;
-    --primary-foreground: 0 0% 7%;
-
-    --secondary: 0 0% 14%;
+    --primary: 48 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 95%;
-
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 50%;
-
-    --accent: 38 100% 50%;
-    --accent-foreground: 0 0% 7%;
-
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 48 100% 50%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14%;
+    --input: 0 0% 12%;
+    --ring: 48 100% 50%;
+    --radius: 16px;
 
-    --border: 0 0% 16%;
-    --input: 0 0% 14%;
-    --ring: 38 100% 50%;
-
-    --radius: 12px;
-
-    /* Яндекс палитра */
-    --ya-yellow: #ffd700;
-    --ya-red: #fc3f1d;
-    --ya-black: #121212;
-    --ya-dark: #1a1a1a;
-    --ya-card: #222222;
-    --ya-card-hover: #2a2a2a;
-    --ya-border: rgba(255, 255, 255, 0.08);
-    --ya-text: #ffffff;
-    --ya-text-secondary: rgba(255, 255, 255, 0.55);
-    --ya-text-muted: rgba(255, 255, 255, 0.3);
+    /* Палитра */
+    --m-yellow: #ffcc00;
+    --m-red: #ff4444;
+    --m-blue: #4f9eff;
+    --m-purple: #a78bfa;
+    --m-green: #00e676;
+    --m-black: #0a0a0a;
+    --m-surface: #111111;
+    --m-card: #161616;
+    --m-card2: #1c1c1c;
+    --m-border: rgba(255, 255, 255, 0.06);
+    --m-text: #ffffff;
+    --m-text2: rgba(255, 255, 255, 0.5);
+    --m-text3: rgba(255, 255, 255, 0.28);
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
-
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    background: var(--ya-black);
-    color: var(--ya-text);
+    background: var(--m-black);
+    color: var(--m-text);
     font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
     font-size: 15px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-
   h1,
   h2,
   h3,
@@ -71,135 +65,252 @@
   h5,
   h6 {
     font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--ya-text);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--m-text);
+  }
+  ::selection {
+    background: var(--m-yellow);
+    color: #000;
   }
 }
 
-/* Яндекс кнопки */
-.ya-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--ya-yellow);
-  color: #000;
-  font-weight: 600;
-  font-size: 15px;
-  padding: 14px 28px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
+/* ── Скроллбар ── */
+::-webkit-scrollbar {
+  width: 3px;
 }
-.ya-btn-primary:hover {
-  background: #ffe033;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.25);
+::-webkit-scrollbar-track {
+  background: var(--m-black);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
 }
 
-.ya-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: var(--ya-text);
-  font-weight: 500;
-  font-size: 15px;
-  padding: 14px 28px;
-  border-radius: 8px;
-  border: 1px solid var(--ya-border);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
+/* ── Секция ── */
+.m-section {
+  padding: 96px 0;
 }
-.ya-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.2);
+@media (max-width: 768px) {
+  .m-section {
+    padding: 64px 0;
+  }
 }
 
-/* Яндекс карточка */
-.ya-card {
-  background: var(--ya-card);
-  border-radius: 16px;
-  border: 1px solid var(--ya-border);
-  transition: all 0.25s ease;
+/* ── Карточка ── */
+.m-card {
+  background: var(--m-card);
+  border-radius: 24px;
+  border: 1px solid var(--m-border);
+  transition:
+    border-color 0.25s,
+    transform 0.25s,
+    box-shadow 0.25s;
 }
-.ya-card:hover {
-  background: var(--ya-card-hover);
-  border-color: rgba(255, 255, 255, 0.14);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+.m-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* Яндекс тег */
-.ya-tag {
+/* ── Тег ── */
+.m-tag {
   display: inline-block;
-  background: rgba(255, 215, 0, 0.12);
-  color: var(--ya-yellow);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 100px;
-  letter-spacing: 0.04em;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  background: rgba(255, 204, 0, 0.1);
+  color: var(--m-yellow);
+}
+.m-tag-red {
+  background: rgba(255, 68, 68, 0.1);
+  color: var(--m-red);
+}
+.m-tag-white {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.5);
+}
+.m-tag-blue {
+  background: rgba(79, 158, 255, 0.1);
+  color: var(--m-blue);
 }
 
-.ya-tag-red {
-  background: rgba(252, 63, 29, 0.12);
-  color: var(--ya-red);
-}
-
-.ya-tag-white {
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Разделитель */
-.ya-divider {
-  height: 1px;
-  background: var(--ya-border);
+/* ── Кнопки ── */
+.m-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--m-yellow);
+  color: #000;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border-radius: 14px;
   border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 0 40px rgba(255, 204, 0, 0.12);
+}
+.m-btn-primary:hover {
+  background: #ffe033;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255, 204, 0, 0.3);
+}
+.m-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--m-text);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.m-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
-/* Число-метрика */
-.ya-metric {
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--ya-text);
-  line-height: 1;
+/* ── Навигация ── */
+.m-nav-pill {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 8px 18px;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.m-nav-pill:hover {
+  color: var(--m-text);
+  background: rgba(255, 255, 255, 0.06);
+}
+.m-nav-pill.active {
+  color: #000;
+  background: var(--m-yellow);
 }
 
-.ya-metric-yellow {
-  color: var(--ya-yellow);
-}
-
-/* Логотип Яндекс */
-.ya-logo-dot {
-  color: var(--ya-red);
-}
-
-/* Иконка-кружок */
-.ya-icon-circle {
+/* ── Иконка-кружок ── */
+.m-icon-box {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 215, 0, 0.12);
-  color: var(--ya-yellow);
+  background: rgba(255, 204, 0, 0.1);
+  color: var(--m-yellow);
   flex-shrink: 0;
 }
 
-.ya-icon-circle-red {
-  background: rgba(252, 63, 29, 0.12);
-  color: var(--ya-red);
+/* ── Сетка фона ── */
+.m-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* Анимации */
-@keyframes ya-fade-up {
+/* ── Анимации появления ── */
+.m-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.m-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* delay-классы для анимаций появления */
+.delay-100 {
+  transition-delay: 0.1s !important;
+}
+.delay-150 {
+  transition-delay: 0.15s !important;
+}
+.delay-200 {
+  transition-delay: 0.2s !important;
+}
+.delay-250 {
+  transition-delay: 0.25s !important;
+}
+.delay-300 {
+  transition-delay: 0.3s !important;
+}
+.delay-400 {
+  transition-delay: 0.4s !important;
+}
+.delay-500 {
+  transition-delay: 0.5s !important;
+}
+.delay-600 {
+  transition-delay: 0.6s !important;
+}
+.delay-700 {
+  transition-delay: 0.7s !important;
+}
+.delay-800 {
+  transition-delay: 0.8s !important;
+}
+
+/* ── Старые классы (обратная совместимость) ── */
+.ya-section {
+  padding: 80px 0;
+}
+.ya-card {
+  @apply m-card;
+}
+.ya-tag {
+  @apply m-tag;
+}
+.ya-tag-red {
+  @apply m-tag-red;
+}
+.ya-tag-white {
+  @apply m-tag-white;
+}
+.ya-btn-primary {
+  @apply m-btn-primary;
+}
+.ya-btn-secondary {
+  @apply m-btn-secondary;
+}
+.ya-nav-pill {
+  @apply m-nav-pill;
+}
+.ya-icon-circle {
+  @apply m-icon-box;
+}
+.ya-text-muted {
+  color: var(--m-text3);
+}
+.ya-anim-up {
+  animation: fadeUp 0.6s ease both;
+}
+.ya-anim-in {
+  animation: fadeIn 0.5s ease both;
+}
+@keyframes fadeUp {
   from {
     opacity: 0;
     transform: translateY(24px);
@@ -209,8 +320,7 @@
     transform: translateY(0);
   }
 }
-
-@keyframes ya-fade-in {
+@keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -218,136 +328,16 @@
     opacity: 1;
   }
 }
-
-@keyframes ya-scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.ya-anim-up {
-  animation: ya-fade-up 0.6s ease both;
-}
-.ya-anim-in {
-  animation: ya-fade-in 0.5s ease both;
-}
-.ya-anim-scale {
-  animation: ya-scale-in 0.5s ease both;
-}
-
-.delay-100 {
-  animation-delay: 0.1s;
-}
-.delay-200 {
-  animation-delay: 0.2s;
-}
-.delay-300 {
-  animation-delay: 0.3s;
-}
-.delay-400 {
-  animation-delay: 0.4s;
-}
-.delay-500 {
-  animation-delay: 0.5s;
-}
-.delay-600 {
-  animation-delay: 0.6s;
-}
-.delay-700 {
-  animation-delay: 0.7s;
-}
-.delay-800 {
-  animation-delay: 0.8s;
-}
-
-/* Скроллбар */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: var(--ya-black);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* Секция */
-.ya-section {
-  padding: 80px 0;
-}
-
 @media (max-width: 768px) {
   .ya-section {
     padding: 56px 0;
   }
-  .ya-metric {
-    font-size: 36px;
-  }
 }
 
-/* Pill навигации */
-.ya-nav-pill {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ya-text-secondary);
-  padding: 6px 14px;
-  border-radius: 100px;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-.ya-nav-pill:hover,
-.ya-nav-pill.active {
-  color: var(--ya-text);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* Градиентный текст */
-.ya-gradient-text {
-  background: linear-gradient(135deg, #ffd700, #fc3f1d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Сетка фона */
-.ya-grid-bg {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* Полоса акцента */
-.ya-accent-line {
+/* ── Полоса акцента ── */
+.m-accent-line {
   width: 40px;
   height: 3px;
-  background: var(--ya-yellow);
+  background: var(--m-yellow);
   border-radius: 2px;
-}
-
-/* Бейдж экосистемы */
-.ya-ecosystem-badge {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--ya-border);
-  border-radius: 100px;
-  padding: 8px 16px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ya-text-secondary);
-  transition: all 0.2s ease;
-  cursor: default;
-}
-.ya-ecosystem-badge:hover {
-  background: rgba(255, 255, 255, 0.09);
-  color: var(--ya-text);
-  border-color: rgba(255, 255, 255, 0.2);
 }
