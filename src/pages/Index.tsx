@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Icon from "@/components/ui/icon";
 import { NAV_SECTIONS } from "@/components/sections/shared";
 import HeroSection from "@/components/sections/HeroSection";
 import ContentSections from "@/components/sections/ContentSections";
@@ -7,56 +6,71 @@ import BusinessSections from "@/components/sections/BusinessSections";
 import TeamProposal from "@/components/sections/TeamProposal";
 
 function Nav({ active }: { active: string }) {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5" style={{ background: 'rgba(10, 13, 18, 0.92)', backdropFilter: 'blur(20px)' }}>
-      <div className="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 flex items-center justify-center border" style={{ borderColor: 'hsl(28 100% 55%)', background: 'rgba(255,140,30,0.1)' }}>
-            <Icon name="Wrench" size={16} style={{ color: 'hsl(28 100% 55%)' }} />
-          </div>
-          <span className="font-bold text-white text-sm" style={{ fontFamily: 'Oswald, sans-serif', letterSpacing: '0.2em' }}>МЕХАНИКА</span>
-          <span className="tech-tag ml-2">МАСТЕР-ПЛАН</span>
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled ? 'rgba(18,18,18,0.95)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Лого */}
+        <div className="flex items-center gap-1 font-bold text-white text-lg">
+          Механики<span style={{ color: 'var(--ya-red)' }}>.</span>
         </div>
-        <div className="hidden md:flex items-center gap-5">
+
+        {/* Навигация */}
+        <div className="hidden md:flex items-center gap-1">
           {NAV_SECTIONS.map((s) => (
             <a
               key={s.id}
               href={`#${s.id}`}
-              className="text-xs tracking-widest uppercase transition-colors"
-              style={{
-                fontFamily: 'IBM Plex Mono, monospace',
-                color: active === s.id ? 'hsl(28 100% 55%)' : 'rgba(255,255,255,0.35)'
-              }}
+              className={`ya-nav-pill ${active === s.id ? 'active' : ''}`}
             >
               {s.label}
             </a>
           ))}
         </div>
+
+        {/* CTA */}
+        <a href="#pitch" className="ya-btn-primary" style={{ padding: '8px 20px', fontSize: 13 }}>
+          Предложение
+        </a>
       </div>
     </nav>
   );
 }
 
 export default function Index() {
-  const [activeSection, setActiveSection] = useState("hero");
+  const [active, setActive] = useState("hero");
 
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       for (const s of NAV_SECTIONS) {
         const el = document.getElementById(s.id);
         if (el) {
           const { top, bottom } = el.getBoundingClientRect();
-          if (top <= 100 && bottom > 100) { setActiveSection(s.id); break; }
+          if (top <= 80 && bottom > 80) { setActive(s.id); break; }
         }
       }
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ background: 'hsl(220 20% 6%)' }}>
-      <Nav active={activeSection} />
+    <div className="min-h-screen" style={{ background: 'var(--ya-black)' }}>
+      <Nav active={active} />
       <HeroSection />
       <ContentSections />
       <BusinessSections />

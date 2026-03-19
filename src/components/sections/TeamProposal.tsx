@@ -1,85 +1,117 @@
 import Icon from "@/components/ui/icon";
-import { SectionHeader } from "./shared";
+import { SectionLabel, SectionTitle, SectionSubtitle, useInView } from "./shared";
 
-function ProposalSection() {
+const WHY_YANDEX = [
+  {
+    icon: "Database",
+    title: "Яндекс уже владеет экосистемой",
+    desc: "Яндекс.Авто, Яндекс Go, Яндекс.Страхование — идеальная инфраструктура для интеграции. Механики органично встраиваются в существующие продукты.",
+  },
+  {
+    icon: "Users",
+    title: "Готовая аудитория",
+    desc: "60+ млн активных пользователей Яндекса. Запуск «Механики» внутри экосистемы даёт мгновенный доступ без маркетинговых затрат.",
+  },
+  {
+    icon: "TrendingUp",
+    title: "Данные усиливают друг друга",
+    desc: "Авто-данные «Механики» обогащают профили пользователей Яндекса. Это повышает точность рекламной таргетировки и финансовых продуктов.",
+  },
+  {
+    icon: "Globe",
+    title: "Масштаб без риска",
+    desc: "Asset-light модель: Яндекс не покупает флот, не строит СТО. Только платформа, данные и маркетплейс услуг.",
+  },
+];
+
+const STEPS = [
+  {
+    num: "01",
+    title: "Пилот «Снег»",
+    desc: "30 дней, один район Москвы. 50 первых пользователей, замер метрик и NPS.",
+    icon: "Snowflake",
+  },
+  {
+    num: "02",
+    title: "Цифровой паспорт",
+    desc: "5 партнёрских СТО, запуск VIN-верификации, первые 500 досье.",
+    icon: "FileText",
+  },
+  {
+    num: "03",
+    title: "Data продукт",
+    desc: "Первые сделки по продаже данных страховщикам и дилерам.",
+    icon: "Database",
+  },
+];
+
+function PitchSection() {
+  const { ref, inView } = useInView();
   return (
-    <section id="proposal" className="relative py-32 overflow-hidden" style={{ background: 'hsl(220 18% 8%)' }}>
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(28 100% 55%), transparent)' }} />
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[600px] h-[600px] rounded-full opacity-10 blur-3xl" style={{ background: 'radial-gradient(circle, hsl(28 100% 55%), transparent)' }} />
-      </div>
-      <div className="relative max-w-4xl mx-auto px-8 text-center">
-        <div className="section-number mb-6">09 // СЛЕДУЮЩИЙ ШАГ</div>
-        <h2 className="text-7xl font-bold text-white mb-4 leading-none text-glow-orange" style={{ fontFamily: 'Oswald, sans-serif' }}>
-          ЗАПУСТИМ<br /><span style={{ color: 'hsl(28 100% 55%)' }}>ВМЕСТЕ</span>
-        </h2>
-        <p className="text-lg text-white/50 font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-          Предлагаем начать с пилотного запуска сервиса «Снег» в одном районе Москвы — это минимальный риск и максимальная скорость проверки гипотез.
-        </p>
+    <section id="pitch" className="ya-section relative overflow-hidden" style={{ background: 'var(--ya-dark)' }}>
+      {/* Yellow glow */}
+      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] rounded-full blur-[100px] opacity-[0.05]" style={{ background: 'var(--ya-yellow)' }} />
 
-        <div className="grid md:grid-cols-3 gap-4 mb-12 text-left">
-          {[
-            { step: "01", title: "Пилот «Снег»", desc: "30 дней, один район Москвы. Первые 50 подписчиков — бесплатно.", icon: "Snowflake" },
-            { step: "02", title: "Цифровой паспорт", desc: "Подключение 3–5 СТО-партнёров, запуск API, фото-регламент.", icon: "FileText" },
-            { step: "03", title: "B2B контракт", desc: "Логистическая компания на тарифе «Хэви» — первый корпоративный клиент.", icon: "Handshake" },
-          ].map((s) => (
-            <div key={s.step} className="p-6 border border-white/10 hover-card" style={{ background: 'rgba(255,255,255,0.03)' }}>
-              <div className="text-4xl font-bold mb-3 text-white/10" style={{ fontFamily: 'Oswald, sans-serif' }}>{s.step}</div>
-              <Icon name={s.icon} size={28} style={{ color: 'hsl(28 100% 55%)', marginBottom: '12px' }} />
-              <div className="text-white font-bold mb-2" style={{ fontFamily: 'Oswald, sans-serif', letterSpacing: '0.05em' }}>{s.title}</div>
-              <div className="text-sm text-white/40 font-light">{s.desc}</div>
+      <div className="relative max-w-6xl mx-auto px-6">
+        <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
+          <SectionLabel>Предложение</SectionLabel>
+          <SectionTitle>
+            Почему это проект<br />
+            <span style={{ color: 'var(--ya-yellow)' }}>для Яндекса</span>
+          </SectionTitle>
+          <SectionSubtitle>
+            «Механики» — не конкурент экосистеме Яндекса. Это недостающий слой, который соединяет физический авторынок с цифровым профилем пользователя.
+          </SectionSubtitle>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-3 mb-12">
+          {WHY_YANDEX.map((w, i) => (
+            <div key={w.title} className={`ya-card p-6 flex gap-4 ${inView ? `ya-anim-up delay-${(i + 1) * 150}` : 'opacity-0'}`}>
+              <div className="ya-icon-circle flex-shrink-0">
+                <Icon name={w.icon} size={20} />
+              </div>
+              <div>
+                <div className="font-semibold text-white mb-2">{w.title}</div>
+                <div className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>{w.desc}</div>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <button className="px-10 py-4 font-bold text-base tracking-widest uppercase transition-all hover:opacity-90"
-                  style={{ background: 'hsl(28 100% 55%)', color: 'hsl(220 20% 6%)', fontFamily: 'Oswald, sans-serif', letterSpacing: '0.15em' }}>
-            Запустить пилот
-          </button>
-          <button className="px-10 py-4 font-bold text-base tracking-widest uppercase border border-white/20 text-white/60 hover:border-white/40 hover:text-white transition-all"
-                  style={{ fontFamily: 'Oswald, sans-serif', letterSpacing: '0.15em' }}>
-            Скачать PDF
-          </button>
+        {/* Первые шаги */}
+        <div className={`mb-12 ${inView ? 'ya-anim-up delay-500' : 'opacity-0'}`}>
+          <h3 className="text-xl font-bold text-white mb-6">Первые три шага</h3>
+          <div className="grid md:grid-cols-3 gap-3">
+            {STEPS.map((s) => (
+              <div key={s.num} className="ya-card p-6">
+                <div className="text-4xl font-bold mb-4" style={{ color: 'rgba(255,215,0,0.15)' }}>{s.num}</div>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'rgba(255,215,0,0.1)' }}>
+                  <Icon name={s.icon} size={18} style={{ color: 'var(--ya-yellow)' }} />
+                </div>
+                <div className="font-semibold text-white mb-2">{s.title}</div>
+                <div className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.6 }}>{s.desc}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4 mb-8">
-          <div className="p-6 border border-white/10 text-left" style={{ background: 'rgba(255,255,255,0.02)' }}>
-            <div className="text-xs font-mono-brand text-white/30 mb-4 tracking-widest">// ГЛОССАРИЙ</div>
-            <div className="space-y-2">
-              {[
-                { term: "VIN", def: "17-значный код картотеки ТС" },
-                { term: "Визуальное Досье", def: "Архив HD-фото осмотров и пруфов ремонта" },
-                { term: "Порог чувствительности", def: "Фильтр ИИ: < 5 см царапины, < 2 см вмятины" },
-                { term: "Asset-Light", def: "Бизнес-модель без владения активами" },
-                { term: "BYOD", def: "Bring Your Own Device — личный инструмент мастера" },
-                { term: "КТГ", def: "Коэффициент технической готовности > 92%" },
-              ].map((g) => (
-                <div key={g.term} className="flex gap-3 py-2 border-b border-white/5">
-                  <span className="text-xs font-mono-brand flex-shrink-0 w-36" style={{ color: 'hsl(28 100% 55%)' }}>{g.term}</span>
-                  <span className="text-xs text-white/40 font-light">{g.def}</span>
-                </div>
-              ))}
+        {/* CTA блок */}
+        <div className={`p-8 md:p-10 rounded-2xl ${inView ? 'ya-anim-up delay-700' : 'opacity-0'}`} style={{ background: 'rgba(255,215,0,0.06)', border: '1px solid rgba(255,215,0,0.15)' }}>
+          <div className="flex flex-col md:flex-row md:items-center gap-6">
+            <div className="flex-1">
+              <div className="text-2xl font-bold text-white mb-2">Готов запустить пилот</div>
+              <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
+                Есть концепция, юнит-экономика и понимание рынка. Ищу команду и ресурсы Яндекса, чтобы проверить гипотезу за 30 дней.
+              </p>
             </div>
-          </div>
-
-          <div className="p-6 border border-white/10 text-left" style={{ background: 'rgba(255,255,255,0.02)' }}>
-            <div className="text-xs font-mono-brand text-white/30 mb-4 tracking-widest">// КОНТАКТЫ</div>
-            <div className="space-y-4 mb-6">
-              {[
-                { icon: "Mail", label: "info@mechanika.ru" },
-                { icon: "Phone", label: "+7 (495) 000-00-00" },
-                { icon: "Globe", label: "www.mechanika.ru" },
-              ].map((c) => (
-                <div key={c.label} className="flex items-center gap-3">
-                  <Icon name={c.icon} size={16} style={{ color: 'hsl(28 100% 55%)' }} />
-                  <span className="text-sm text-white/50 font-mono-brand">{c.label}</span>
-                </div>
-              ))}
-            </div>
-            <div className="p-4 border-l-2 text-xs text-white/40 font-light leading-relaxed" style={{ borderColor: 'hsl(195 100% 50%)', background: 'rgba(0,210,255,0.04)' }}>
-              Документ содержит конфиденциальную информацию. Распространение без согласования с автором запрещено.
+            <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+              <button className="ya-btn-primary">
+                Обсудить проект
+                <Icon name="ArrowRight" size={16} />
+              </button>
+              <button className="ya-btn-secondary">
+                Скачать PDF
+              </button>
             </div>
           </div>
         </div>
@@ -90,16 +122,18 @@ function ProposalSection() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/5 py-8">
-      <div className="max-w-7xl mx-auto px-8 flex items-center justify-between flex-wrap gap-4">
-        <div className="flex items-center gap-3">
-          <div className="w-6 h-6 flex items-center justify-center border" style={{ borderColor: 'hsl(28 100% 55%)', background: 'rgba(255,140,30,0.1)' }}>
-            <Icon name="Wrench" size={12} style={{ color: 'hsl(28 100% 55%)' }} />
-          </div>
-          <span className="text-sm font-bold text-white/30 tracking-widest" style={{ fontFamily: 'Oswald, sans-serif' }}>МЕХАНИКА</span>
+    <footer className="py-10" style={{ background: 'var(--ya-black)', borderTop: '1px solid var(--ya-border)' }}>
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <span className="text-lg font-bold text-white">Механики</span>
+          <span style={{ color: 'var(--ya-red)' }}>.</span>
         </div>
-        <div className="text-xs font-mono-brand text-white/20">© 2026 Механика. Конфиденциально.</div>
-        <div className="text-xs font-mono-brand text-white/20">v1.0 // Мастер-план</div>
+        <div className="text-sm" style={{ color: 'var(--ya-text-muted)' }}>
+          Концепция продукта · 2026 · Конфиденциально
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-sm" style={{ color: 'var(--ya-text-muted)' }}>v2.0</span>
+        </div>
       </div>
     </footer>
   );
@@ -108,7 +142,7 @@ function Footer() {
 export default function TeamProposal() {
   return (
     <>
-      <ProposalSection />
+      <PitchSection />
       <Footer />
     </>
   );
