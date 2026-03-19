@@ -5,42 +5,63 @@ const HOW_STEPS = [
   {
     num: "01", icon: "PlusCircle", color: "#4F9EFF",
     title: "Заводите карточку авто",
-    desc: "Марка, модель, год, пробег. Вносите данные о последнем ТО: масло, тормозные колодки, ремень ГРМ, шины — всё в одном месте.",
+    desc: "Марка, модель, год, пробег. Вносите данные о последнем ТО: масло, колодки, ремень ГРМ, шины — всё в одном месте.",
   },
   {
     num: "02", icon: "Cpu", color: "#FFD700",
-    title: "Блок OBD следит за пробегом",
-    desc: "Телематическое устройство в реальном времени передаёт актуальный пробег. Вам не нужно ничего считать вручную.",
+    title: "Подключаете блок OBD",
+    desc: "Небольшое устройство в разъём — и авто начинает «рассказывать» о себе само. Пробег, нагрузки, состояние систем. Вы просто едете.",
   },
   {
     num: "03", icon: "Bell", color: "#A78BFA",
-    title: "Система предупреждает заранее",
-    desc: "За 100–500 км до плановой замены приходит уведомление: «Пора менять масло». Никаких просроченных ТО.",
+    title: "Получаете заботливые подсказки",
+    desc: "За 100–500 км до замены масла, при первых признаках слабого аккумулятора, при нестандартной температуре двигателя — мы скажем первыми.",
   },
   {
     num: "04", icon: "MapPin", color: "#FC3F1D",
-    title: "Предлагаем проверенный сервис",
-    desc: "Платформа подбирает автосервис — из тех, что вы уже посещали, или рядом, или с высоким рейтингом доверия.",
+    title: "Записываемся вместе",
+    desc: "Платформа предложит проверенный автосервис — тот, что вы уже посещали, или ближайший с высоким рейтингом. Запись прямо из уведомления.",
   },
 ];
 
-const MAINTENANCE_ITEMS = [
-  { icon: "Droplets", label: "Масло двигателя", note: "по пробегу" },
-  { icon: "Circle", label: "Тормозные колодки", note: "передние и задние" },
-  { icon: "Settings", label: "Ремень ГРМ", note: "по пробегу / годам" },
-  { icon: "Wind", label: "Воздушный фильтр", note: "по сезону" },
-  { icon: "Thermometer", label: "Антифриз", note: "по сезону" },
-  { icon: "Zap", label: "АКБ", note: "по состоянию" },
-  { icon: "RotateCcw", label: "Шины", note: "сезонная смена" },
-  { icon: "Gauge", label: "Давление в шинах", note: "ежемесячно" },
+const CARE_ITEMS = [
+  { icon: "Droplets", label: "Масло двигателя", note: "напомним до истечения ресурса", color: "#4F9EFF" },
+  { icon: "Zap", label: "Аккумулятор", note: "заметим слабость раньше вас", color: "#FFD700" },
+  { icon: "Thermometer", label: "Температура мотора", note: "предупредим о перегреве", color: "#FC3F1D" },
+  { icon: "Gauge", label: "Давление в шинах", note: "следим автоматически", color: "#A78BFA" },
+  { icon: "Circle", label: "Тормозные колодки", note: "по пробегу и нагрузке", color: "#4F9EFF" },
+  { icon: "Settings", label: "Ремень ГРМ", note: "по пробегу и годам", color: "#FFD700" },
+  { icon: "Wind", label: "Воздушный фильтр", note: "по сезону", color: "#A78BFA" },
+  { icon: "RotateCcw", label: "Сезонная смена шин", note: "напомним в нужный момент", color: "#FC3F1D" },
+  { icon: "Fuel", label: "Расход топлива", note: "покажем отклонения от нормы", color: "#4F9EFF" },
+  { icon: "AlertTriangle", label: "Ошибки двигателя", note: "расшифруем Check Engine", color: "#FFD700" },
+  { icon: "Activity", label: "Стиль вождения", note: "советы для продления ресурса", color: "#A78BFA" },
+  { icon: "ShieldCheck", label: "Общее здоровье авто", note: "сводный балл состояния", color: "#FC3F1D" },
 ];
 
 const RATING_RULES = [
   "Приезд мастера точно в срок по SLA",
-  "Фото и видеофиксация работ в платформе",
+  "Фото и видеофиксация выполненных работ",
   "Подтверждение замены оригинальных запчастей",
   "Отсутствие жалоб и возвратов в течение 30 дней",
   "Соответствие прайса платформы — без скрытых доплат",
+];
+
+const PUSH_EXAMPLES = [
+  {
+    icon: "Zap", color: "#FFD700",
+    title: "Аккумулятор начинает сдавать",
+    body: "Напряжение АКБ ниже нормы. При морозе ниже -10°C авто может не завестись. Лучше проверить заранее.",
+    action: "Записаться на диагностику АКБ",
+    actionColor: "#FFD700",
+  },
+  {
+    icon: "Droplets", color: "#4F9EFF",
+    title: "До замены масла — 98 км",
+    body: "Toyota Camry, пробег 87 340 км. Плановая замена совсем скоро — поможем записаться в проверенный сервис.",
+    action: "Выбрать автосервис рядом",
+    actionColor: "#4F9EFF",
+  },
 ];
 
 export default function LichniyMechanik() {
@@ -52,9 +73,9 @@ export default function LichniyMechanik() {
 
         <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
           <SectionLabel>Продукт · Личный механик</SectionLabel>
-          <SectionTitle>Ваш автомобиль<br />под контролем</SectionTitle>
+          <SectionTitle>Авто под заботой,<br />не под контролем</SectionTitle>
           <SectionSubtitle>
-            Система сама следит за состоянием авто, напоминает о плановом обслуживании и подбирает проверенный сервис — вы просто едете.
+            Мы не следим — мы заботимся. Система сама замечает, когда что-то идёт не так, и предупреждает вас заранее. Вы просто едете — мы держим руку на пульсе вашего авто.
           </SectionSubtitle>
         </div>
 
@@ -77,40 +98,77 @@ export default function LichniyMechanik() {
           </div>
         </div>
 
-        {/* Что отслеживает система */}
+        {/* О чём мы позаботимся */}
         <div className={`mb-12 ${inView ? 'ya-anim-up delay-500' : 'opacity-0'}`}>
-          <h3 className="text-xl font-bold text-white mb-5">Что отслеживает система</h3>
+          <h3 className="text-xl font-bold text-white mb-2">О чём мы позаботимся</h3>
+          <p className="text-sm mb-5" style={{ color: 'var(--ya-text-secondary)' }}>
+            Всё, что раньше нужно было помнить самому — теперь помним мы.
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            {MAINTENANCE_ITEMS.map((item) => (
+            {CARE_ITEMS.map((item) => (
               <div key={item.label} className="ya-card p-4">
-                <div className="ya-icon-circle mb-3" style={{ width: 36, height: 36, borderRadius: 10 }}>
-                  <Icon name={item.icon} size={16} />
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style={{ background: `${item.color}15` }}>
+                  <Icon name={item.icon} size={16} style={{ color: item.color }} />
                 </div>
                 <div className="font-medium text-white text-sm mb-1">{item.label}</div>
-                <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>{item.note}</div>
+                <div className="text-xs" style={{ color: 'var(--ya-text-muted)', lineHeight: 1.5 }}>{item.note}</div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Рейтинг доверия + пример уведомления */}
+        {/* Примеры подсказок + рейтинг */}
         <div className={`grid md:grid-cols-2 gap-4 ${inView ? 'ya-anim-up delay-700' : 'opacity-0'}`}>
 
-          {/* Рейтинг доверия автосервисов */}
+          {/* Примеры уведомлений */}
+          <div className="ya-card p-6">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(167,139,250,0.12)' }}>
+                <Icon name="Smartphone" size={18} style={{ color: '#A78BFA' }} />
+              </div>
+              <div>
+                <div className="font-bold text-white">Примеры заботливых подсказок</div>
+                <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>Что увидит пользователь в приложении</div>
+              </div>
+            </div>
+            <div className="space-y-3">
+              {PUSH_EXAMPLES.map((p) => (
+                <div key={p.title} className="rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${p.color}18` }}>
+                      <Icon name={p.icon} size={16} style={{ color: p.color }} />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-white mb-1">{p.title}</div>
+                      <div className="text-xs mb-3" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.6 }}>{p.body}</div>
+                      <div className="inline-block text-xs font-semibold px-3 py-1 rounded-full" style={{ background: `${p.actionColor}18`, color: p.actionColor }}>
+                        {p.action} →
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 text-xs p-3 rounded-xl" style={{ background: 'rgba(76,175,80,0.08)', border: '1px solid rgba(76,175,80,0.15)', color: '#4CAF50' }}>
+              Запись к мастеру — прямо из уведомления, без звонков
+            </div>
+          </div>
+
+          {/* Рейтинг доверия */}
           <div className="ya-card p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(252,63,29,0.12)' }}>
                 <Icon name="ShieldCheck" size={18} style={{ color: '#FC3F1D' }} />
               </div>
               <div>
-                <div className="font-bold text-white">Рейтинг доверия</div>
-                <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>Только реальные критерии — без поддельных оценок</div>
+                <div className="font-bold text-white">Рейтинг доверия сервисов</div>
+                <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>Только реальные критерии — без накруток</div>
               </div>
             </div>
-            <p className="text-sm mb-4" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-              Рейтинг автосервиса формируется не отзывами, а выполнением стандартов платформы. Накрутить его невозможно.
+            <p className="text-sm mb-5" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
+              Мы рекомендуем только те автосервисы, которые соответствуют стандартам платформы. Рейтинг формируется по объективным критериям — накрутить его невозможно.
             </p>
-            <div className="space-y-2">
+            <div className="space-y-2 mb-6">
               {RATING_RULES.map((rule) => (
                 <div key={rule} className="flex items-start gap-2">
                   <Icon name="CheckCircle2" size={14} style={{ color: '#4CAF50', marginTop: 2, flexShrink: 0 }} />
@@ -118,41 +176,11 @@ export default function LichniyMechanik() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Пример уведомления */}
-          <div className="ya-card p-6 flex flex-col justify-between">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(167,139,250,0.12)' }}>
-                <Icon name="Smartphone" size={18} style={{ color: '#A78BFA' }} />
-              </div>
-              <div>
-                <div className="font-bold text-white">Пример уведомления</div>
-                <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>Что увидит пользователь</div>
-              </div>
-            </div>
-
-            <div className="rounded-2xl p-4 mb-4" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(255,215,0,0.15)' }}>
-                  <Icon name="Wrench" size={16} style={{ color: '#FFD700' }} />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-white mb-1">Пора менять масло</div>
-                  <div className="text-xs mb-3" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.6 }}>
-                    До плановой замены осталось <strong className="text-white">92 км</strong>. Ваш Toyota Camry, пробег 87 340 км.
-                  </div>
-                  <div className="rounded-xl p-3" style={{ background: 'rgba(79,158,255,0.08)', border: '1px solid rgba(79,158,255,0.15)' }}>
-                    <div className="text-xs font-semibold mb-1" style={{ color: '#4F9EFF' }}>Рекомендуем</div>
-                    <div className="text-xs font-medium text-white">Автосервис «Мотор» — 1.2 км</div>
-                    <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>Рейтинг платформы · вы уже посещали</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-xs p-3 rounded-xl" style={{ background: 'rgba(76,175,80,0.08)', border: '1px solid rgba(76,175,80,0.15)', color: '#4CAF50' }}>
-              Запись к мастеру — прямо из уведомления, без звонков
+            <div className="p-4 rounded-2xl" style={{ background: 'rgba(255,215,0,0.05)', border: '1px solid rgba(255,215,0,0.12)' }}>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#FFD700' }}>Блок OBD — необязательно, но выгодно</div>
+              <p className="text-xs" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.6 }}>
+                Без устройства система работает по вашим данным о ТО. С блоком OBD — добавляется автоматический мониторинг в реальном времени и проактивные подсказки по состоянию авто.
+              </p>
             </div>
           </div>
 
