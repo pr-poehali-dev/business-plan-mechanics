@@ -12,7 +12,7 @@ const KPIS = [
       { label: "B2C подписчики (конец года)", target: "40 000", stretch: "70 000" },
       { label: "B2B парков подключено", target: "150", stretch: "300" },
       { label: "Средний чек B2C", target: "₽620/мес", stretch: "₽750/мес" },
-      { label: "Отток (churn rate)", target: "< 5%/мес", stretch: "< 3%/мес" },
+      { label: "Отток подписчиков", target: "< 5%/мес", stretch: "< 3%/мес" },
     ],
   },
   {
@@ -23,7 +23,7 @@ const KPIS = [
       { label: "Время прибытия экипажа (Москва)", target: "< 20 мин", stretch: "< 15 мин" },
       { label: "Время прибытия (регионы)", target: "< 35 мин", stretch: "< 25 мин" },
       { label: "NPS (индекс лояльности)", target: "> 55", stretch: "> 70" },
-      { label: "Решение с первого выезда (FCR)", target: "> 85%", stretch: "> 92%" },
+      { label: "Решение с первого выезда", target: "> 85%", stretch: "> 92%" },
     ],
   },
   {
@@ -44,7 +44,7 @@ const KPIS = [
     items: [
       { label: "Доля предиктивных вызовов", target: "20%", stretch: "35%" },
       { label: "Точность предсказания инцидента", target: "> 70%", stretch: "> 82%" },
-      { label: "Uptime платформы", target: "99.5%", stretch: "99.9%" },
+      { label: "Доступность платформы", target: "99.5%", stretch: "99.9%" },
       { label: "Охват телематикой (от парка)", target: "60%", stretch: "85%" },
     ],
   },
@@ -56,10 +56,10 @@ function KpiSection() {
     <section id="pitch" className="ya-section" style={{ background: 'var(--ya-black)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
-          <SectionLabel>KPI · Год 1</SectionLabel>
+          <SectionLabel>Показатели · Год 1</SectionLabel>
           <SectionTitle>Ключевые показатели<br />первого года</SectionTitle>
           <SectionSubtitle>
-            Цель — 40 000 B2C подписчиков и среднее время прибытия экипажа менее 20 минут в Москве к концу 2026 года.
+            Цель — 40 000 частных подписчиков и среднее время прибытия экипажа менее 20 минут в Москве к концу 2026 года.
           </SectionSubtitle>
         </div>
 
@@ -155,7 +155,7 @@ function TeamSection() {
                 <div className="flex-1">
                   <div className="font-bold text-white text-xl">Беломестнов Геннадий Сергеевич</div>
                   <div className="text-xs mt-0.5 mb-1" style={{ color: 'var(--ya-text-muted)' }}>ИНН 751601068341</div>
-                  <div className="text-sm mb-3" style={{ color: 'var(--ya-text-secondary)' }}>Product thinker · Стратегия · Авторынок РФ</div>
+                  <div className="text-sm mb-3" style={{ color: 'var(--ya-text-secondary)' }}>Продуктовое мышление · Стратегия · Авторынок РФ</div>
                   <div className="flex flex-wrap gap-2">
                     <a href="mailto:bgs1990st@mail.ru" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(255,215,0,0.1)', color: 'var(--ya-yellow)' }}>
                       <Icon name="Mail" size={12} />
@@ -163,11 +163,11 @@ function TeamSection() {
                     </a>
                     <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(79,158,255,0.1)', color: '#4F9EFF' }}>
                       <Icon name="Linkedin" size={12} />
-                      LinkedIn
+                      Профиль
                     </a>
                     <a href="https://t.me/yourtg" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.6)' }}>
                       <Icon name="Send" size={12} />
-                      Telegram
+                      Написать
                     </a>
                   </div>
                 </div>

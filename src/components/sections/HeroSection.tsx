@@ -51,7 +51,7 @@ export default function HeroSection() {
 
           <div className="flex flex-wrap gap-3 mb-16 ya-anim-up delay-400">
             <a href="#summary" className="ya-btn-primary">
-              Executive Summary
+              Читать резюме
               <Icon name="ArrowDown" size={16} />
             </a>
             <a href="#pitch" className="ya-btn-secondary">

@@ -49,7 +49,7 @@ export default function SummarySection() {
 
         {/* ── Резюме ── */}
         <div ref={ref} className={`mb-14 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
-          <SectionLabel>Резюме · Executive Summary</SectionLabel>
+          <SectionLabel>Резюме проекта</SectionLabel>
           <SectionTitle>
             Механики —<br />
             <span style={{ color: 'var(--ya-yellow)' }}>бизнес-план</span>
@@ -61,7 +61,7 @@ export default function SummarySection() {
                 <strong className="text-white">Механики</strong> — подписочный сервис экстренной помощи на дорогах с глубокой интеграцией в навигационные и телематические системы. Продукт закрывает критический пробел: при охвате 82% водителей через навигаторы на рынке нет монетизированного сервиса физической помощи.
               </p>
               <p className="text-base mb-4" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
-                Мировой рынок roadside assistance — <strong className="text-white">$32.8 млрд</strong> с ежегодным ростом <strong className="text-white">5.6%</strong>. B2B сегмент (грузовые перевозки) растёт быстрее — <strong className="text-white">7.28% CAGR</strong> — за счёт бума логистики последней мили.
+                Мировой рынок помощи на дорогах — <strong className="text-white">$32.8 млрд</strong> с ежегодным ростом <strong className="text-white">5.6%</strong>. B2B сегмент (грузовые перевозки) растёт быстрее — <strong className="text-white">7.28% CAGR</strong> — за счёт бума логистики последней мили.
               </p>
               <p className="text-base" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
                 Конкурентное преимущество: навигационные сервисы видят каждый автомобиль на дороге и знают условия маршрута. Это позволяет <strong className="text-white">предсказывать инциденты до их возникновения</strong> и отправлять помощь превентивно — чего не умеет ни один конкурент на рынке.

@@ -7,7 +7,7 @@ export const NAV_SECTIONS = [
   { id: "operations", label: "Техплан" },
   { id: "marketing",  label: "Маркетинг" },
   { id: "risks",      label: "Риски" },
-  { id: "pitch",      label: "KPI" },
+  { id: "pitch",      label: "Показатели" },
   { id: "team",       label: "Об авторе" },
 ];
 

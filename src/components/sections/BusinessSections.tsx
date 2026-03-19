@@ -77,7 +77,7 @@ function FinanceSection() {
         </div>
 
         {/* B2C тарифы */}
-        <h3 className={`text-xl font-bold text-white mb-5 ${inView ? 'ya-anim-up delay-100' : 'opacity-0'}`}>B2C — Физические лица</h3>
+        <h3 className={`text-xl font-bold text-white mb-5 ${inView ? 'ya-anim-up delay-100' : 'opacity-0'}`}>Частные лица — тарифы</h3>
         <div className={`grid md:grid-cols-3 gap-3 mb-10 ${inView ? 'ya-anim-up delay-200' : 'opacity-0'}`}>
           {B2C_PLANS.map((plan) => (
             <div key={plan.name} className="ya-card p-6 flex flex-col" style={{ border: plan.highlight ? `1px solid ${plan.color}40` : '1px solid var(--ya-border)', position: 'relative' }}>
@@ -105,7 +105,7 @@ function FinanceSection() {
         </div>
 
         {/* B2B тарифы */}
-        <h3 className={`text-xl font-bold text-white mb-3 ${inView ? 'ya-anim-up delay-400' : 'opacity-0'}`}>B2B — Логистические компании</h3>
+        <h3 className={`text-xl font-bold text-white mb-3 ${inView ? 'ya-anim-up delay-400' : 'opacity-0'}`}>Корпоративный тариф — логистические компании</h3>
         <div className={`ya-card overflow-hidden mb-10 ${inView ? 'ya-anim-up delay-500' : 'opacity-0'}`}>
           <div className="grid grid-cols-4 px-6 py-3" style={{ background: 'rgba(255,255,255,0.04)', borderBottom: '1px solid var(--ya-border)' }}>
             {["Размер парка", "Цена за ТС", "Скидка", "Условия"].map((h) => (
@@ -150,8 +150,8 @@ function FinanceSection() {
             <div key={p.year} className="ya-card p-6">
               <div className="text-xs font-semibold mb-3" style={{ color: 'var(--ya-text-muted)', letterSpacing: '0.06em' }}>{p.year} · {p.note}</div>
               <div className="text-4xl font-bold mb-1" style={{ color: 'var(--ya-yellow)' }}>{p.arr}</div>
-              <div className="text-sm mb-1" style={{ color: 'var(--ya-text-secondary)' }}>{p.users} B2C подписчиков</div>
-              <div className="text-sm" style={{ color: 'var(--ya-text-secondary)' }}>{p.b2b} B2B контрактов</div>
+              <div className="text-sm mb-1" style={{ color: 'var(--ya-text-secondary)' }}>{p.users} частных подписчиков</div>
+              <div className="text-sm" style={{ color: 'var(--ya-text-secondary)' }}>{p.b2b} корпоративных контрактов</div>
             </div>
           ))}
         </div>
