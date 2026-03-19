@@ -132,6 +132,60 @@ function OperationsSection() {
           </div>
         </div>
 
+        {/* Телематический блок */}
+        <div className={`mb-12 ${inView ? 'ya-anim-up delay-580' : 'opacity-0'}`}>
+          <h3 className="text-xl font-bold text-white mb-5">Телематический блок</h3>
+          <div className="ya-card p-6" style={{ border: '1px solid rgba(79,158,255,0.25)' }}>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(79,158,255,0.12)' }}>
+                    <Icon name="Cpu" size={18} style={{ color: '#4F9EFF' }} />
+                  </div>
+                  <div>
+                    <div className="font-bold text-white">Устройство OBD-II</div>
+                    <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>Приобретается клиентом при подключении</div>
+                  </div>
+                </div>
+                <p className="text-sm mb-5" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
+                  Небольшой блок вставляется в стандартный разъём OBD-II — он есть в каждом автомобиле с 2004 года. Установка занимает одну минуту. Устройство в реальном времени отправляет данные о состоянии авто в платформу: давление в шинах, заряд АКБ, ошибки двигателя, пробег и стиль вождения.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["Plug & Play за 1 мин", "Работает без зарядки", "4G + GPS трекинг", "Совместимо со всеми авто"].map((f) => (
+                    <span key={f} className="text-xs px-3 py-1 rounded-full" style={{ background: 'rgba(79,158,255,0.1)', color: '#4F9EFF' }}>{f}</span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(255,215,0,0.12)' }}>
+                    <Icon name="Gift" size={18} style={{ color: '#FFD700' }} />
+                  </div>
+                  <div>
+                    <div className="font-bold text-white">Бонус за подключение</div>
+                    <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>Нам нужны ваши данные — мы платим за это</div>
+                  </div>
+                </div>
+                <p className="text-sm mb-4" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
+                  Анонимные данные пробегов, инцидентов и состояния авто формируют базу <strong className="text-white">«Прозрачное авто»</strong> — сервис проверки истории автомобиля при покупке. Клиент, подключивший блок, получает за это ощутимый бонус.
+                </p>
+                <div className="space-y-2">
+                  {[
+                    { icon: "Tag", text: "Скидка ₽500 на первый месяц подписки" },
+                    { icon: "FileSearch", text: "Бесплатный отчёт «Прозрачное авто» на своё авто" },
+                    { icon: "ShieldCheck", text: "Повышенный кешбэк при вызове мастера" },
+                  ].map((b) => (
+                    <div key={b.text} className="flex items-start gap-2">
+                      <Icon name={b.icon} size={14} style={{ color: '#FFD700', marginTop: 2, flexShrink: 0 }} />
+                      <span className="text-sm" style={{ color: 'var(--ya-text-secondary)' }}>{b.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className={`mb-12 ${inView ? 'ya-anim-up delay-600' : 'opacity-0'}`}>
           <h3 className="text-xl font-bold text-white mb-5">Перечень услуг</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
