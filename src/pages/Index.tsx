@@ -26,7 +26,12 @@ function Nav({ active }: { active: string }) {
       }}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-1 font-bold text-white text-lg">
+        <div className="flex items-center gap-2 font-bold text-white text-lg">
+          <img
+            src="https://cdn.poehali.dev/projects/c2ff7195-b676-4c24-b753-d3b14814bb67/files/3fbd0cd2-d423-4ed0-8305-6cf2aabbeaa2.jpg"
+            alt="Механики"
+            style={{ width: 32, height: 32, borderRadius: 8, objectFit: 'cover' }}
+          />
           Механики<span style={{ color: 'var(--ya-yellow)' }}>.</span>
         </div>
 
