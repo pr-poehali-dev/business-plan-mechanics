@@ -1,28 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 
 export const NAV_SECTIONS = [
-  { id: "hero",     label: "Главная" },
-  { id: "services", label: "Сервисы" },
-  { id: "data",     label: "Данные" },
-  { id: "market",   label: "Рынок" },
-  { id: "finance",  label: "Финансы" },
-  { id: "pitch",    label: "Предложение" },
+  { id: "hero",       label: "О продукте" },
+  { id: "operations", label: "Операции" },
+  { id: "finance",    label: "Финансы" },
+  { id: "marketing",  label: "Маркетинг" },
+  { id: "risks",      label: "Риски" },
+  { id: "team",       label: "Команда" },
+  { id: "pitch",      label: "КРI" },
 ];
 
-export function useInView(threshold = 0.15) {
+export function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } }, { threshold });
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setInView(true); obs.disconnect(); }
+    }, { threshold });
     obs.observe(el);
     return () => obs.disconnect();
   }, [threshold]);
   return { ref, inView };
 }
 
-export function useCountUp(target: number, inView: boolean, duration = 1500) {
+export function useCountUp(target: number, inView: boolean, duration = 1800) {
   const [val, setVal] = useState(0);
   useEffect(() => {
     if (!inView) return;

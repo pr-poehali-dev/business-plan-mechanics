@@ -1,169 +1,140 @@
 import Icon from "@/components/ui/icon";
 import { SectionLabel, SectionTitle, SectionSubtitle, useInView } from "./shared";
 
-const SERVICES = [
+// ─── ОПЕРАЦИОННАЯ МОДЕЛЬ ───────────────────────────────────────────────────────
+
+const FLEET = [
   {
-    id: "snow",
-    icon: "Snowflake",
-    tag: "Сервис 01",
-    title: "Механики.Снег",
-    subtitle: "Умная уборка кузова",
-    desc: "Подписочный сервис по уборке снега и поверхностному уходу за автомобилем. Гибридный метод: мастер приходит сам или пользователь сдаёт авто в точку. Фотофиксация каждого выезда.",
-    points: ["Тариф Стандарт — ₽1 490/мес", "Тариф Люкс — ₽2 990/мес", "B2B от ₽890/авт. при парке 10+"],
+    icon: "Car",
+    title: "Лёгкая мобильная бригада",
+    desc: "1 мастер + универсальный фургон. Замена колеса, запуск двигателя, подвоз топлива, вскрытие авто.",
+    specs: ["Развёртывание: 3 мин", "Радиус: 15 км", "Лебёдка 4 500 lbs"],
     color: "#4F9EFF",
-    dataValue: "История обслуживания, геолокация, состояние кузова",
   },
   {
-    id: "passport",
-    icon: "FileText",
-    tag: "Сервис 02",
-    title: "Механики.Паспорт",
-    subtitle: "Цифровое досье автомобиля",
-    desc: "Пользователь добровольно создаёт цифровой паспорт: фото кузова, история ремонтов, сервисные книги. Верификация VIN через партнёрские СТО.",
-    points: ["Визуальное досье — архив HD фото", "Ремонтное досье — чеки + акты работ", "ИИ-оценка состояния"],
+    icon: "Truck",
+    title: "Средний эвакуатор",
+    desc: "Платформа + частичная погрузка. Легковые и лёгкие коммерческие авто, работа в снежных заносах.",
+    specs: ["До 5 тонн", "Лебёдка 12 000 lbs", "Автоцепи противоскольжения"],
     color: "#FFD700",
-    dataValue: "Техническое состояние, пробег, ремонтная история, стоимость",
   },
   {
-    id: "insurance",
-    icon: "Shield",
-    tag: "Сервис 03",
-    title: "Механики.Страховка",
-    subtitle: "Персональный страховой профиль",
-    desc: "На основе накопленных данных формируется страховой скоринг. Пользователь получает персональные предложения от партнёров-страховщиков — дешевле рынка на 15–30%.",
-    points: ["Скоринг на основе реальных данных", "Интеграция с 5+ страховщиками", "Кешбэк за актуальные данные"],
+    icon: "Construction",
+    title: "Тяжёлый эвакуатор",
+    desc: "Специализированная техника для грузовиков и спецтехники. Работа на обледенелых склонах и вне дорог.",
+    specs: ["До 60 тонн", "Динамические стропы", "Гидравлика 50 000 lbs"],
     color: "#FC3F1D",
-    dataValue: "Страховая история, стиль вождения, риск-профиль",
+  },
+  {
+    icon: "Zap",
+    title: "Электро-юнит",
+    desc: "Мобильная зарядная станция для EV. Буксир до зарядки, диагностика высоковольтной батареи.",
+    specs: ["DC Fast Charge 50 кВт", "Запас хода 200 км", "Все стандарты EV"],
+    color: "#A78BFA",
   },
 ];
 
-function ServicesSection() {
+const SERVICES_LIST = [
+  { icon: "RotateCcw", label: "Замена колеса", note: "во всех тарифах" },
+  { icon: "Battery", label: "Запуск в мороз", note: "до -40°C" },
+  { icon: "Fuel", label: "Подвоз топлива", note: "до 10 л на место" },
+  { icon: "ArrowUpFromLine", label: "Вытягивание из кювета", note: "лебёдка + стропы" },
+  { icon: "Key", label: "Вскрытие авто", note: "без повреждений" },
+  { icon: "Truck", label: "Эвакуация до 100 км", note: "1×/год бесплатно (Плюс)" },
+  { icon: "Mountain", label: "Экстремальная эвакуация", note: "склоны, тяжёлая техника" },
+  { icon: "Wrench", label: "Базовая диагностика", note: "OBD-II + телематика" },
+];
+
+const ALGO_STEPS = [
+  {
+    num: "01", icon: "Cpu", color: "#4F9EFF",
+    title: "Телематика фиксирует аномалию",
+    desc: "Яндекс Авто и OBD-датчик регистрируют снижение давления в шинах, падение заряда АКБ или ошибку двигателя.",
+  },
+  {
+    num: "02", icon: "MapPin", color: "#FFD700",
+    title: "Навигатор анализирует маршрут",
+    desc: "До ближайшего СТО 40 км, за бортом -18°C, горная дорога. Вероятность инцидента — 73%.",
+  },
+  {
+    num: "03", icon: "Bell", color: "#A78BFA",
+    title: "Проактивное предложение",
+    desc: "Пуш до инцидента: «Замечено падение давления. Выслать мастера?» — водитель ещё не знает о проблеме.",
+  },
+  {
+    num: "04", icon: "Navigation", color: "#FC3F1D",
+    title: "Бригада уже едет",
+    desc: "Ближайший мастер получает задание автоматически. Экипаж виден на карте Навигатора в реальном времени.",
+  },
+];
+
+function OperationsSection() {
   const { ref, inView } = useInView();
   return (
-    <section id="services" className="ya-section" style={{ background: 'var(--ya-black)' }}>
+    <section id="operations" className="ya-section" style={{ background: 'var(--ya-dark)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
-          <SectionLabel>Три сервиса</SectionLabel>
-          <SectionTitle>Продукты экосистемы</SectionTitle>
+          <SectionLabel>Раздел 1 · Операции</SectionLabel>
+          <SectionTitle>Парк техники<br />и операционная модель</SectionTitle>
           <SectionSubtitle>
-            Каждый сервис решает реальную проблему и одновременно формирует ценный массив данных об автомобиле и владельце.
+            От лёгкой мобильной бригады до тяжёлых эвакуаторов на 60 тонн — полное покрытие всех сценариев помощи на дороге.
           </SectionSubtitle>
         </div>
 
-        <div className="space-y-4">
-          {SERVICES.map((s, i) => (
-            <div key={s.id} className={`ya-card p-8 ${inView ? `ya-anim-up delay-${(i + 1) * 200}` : 'opacity-0'}`}>
-              <div className="flex flex-col lg:flex-row lg:items-start gap-8">
-                {/* Левая часть */}
-                <div className="flex-1">
-                  <div className="flex items-center gap-4 mb-5">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: `${s.color}18` }}>
-                      <Icon name={s.icon} size={22} style={{ color: s.color }} />
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold mb-1" style={{ color: 'var(--ya-text-muted)', letterSpacing: '0.06em' }}>{s.tag}</div>
-                      <div className="text-xl font-bold text-white">{s.title}</div>
-                    </div>
-                    <span className="ml-auto text-sm font-medium" style={{ color: 'var(--ya-text-muted)' }}>{s.subtitle}</span>
-                  </div>
-
-                  <p className="text-sm mb-5" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-                    {s.desc}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {s.points.map((p) => (
-                      <span key={p} className="ya-ecosystem-badge text-xs">{p}</span>
-                    ))}
-                  </div>
+        <div className="grid md:grid-cols-2 gap-3 mb-12">
+          {FLEET.map((f, i) => (
+            <div key={f.title} className={`ya-card p-6 ${inView ? `ya-anim-up delay-${(i + 1) * 150}` : 'opacity-0'}`}>
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${f.color}18` }}>
+                  <Icon name={f.icon} size={22} style={{ color: f.color }} />
                 </div>
-
-                {/* Правая часть — ценность данных */}
-                <div className="lg:w-72 p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--ya-border)' }}>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Icon name="Database" size={14} style={{ color: s.color }} />
-                    <span className="text-xs font-semibold" style={{ color: s.color, letterSpacing: '0.05em' }}>ДАННЫЕ</span>
-                  </div>
-                  <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.6 }}>
-                    {s.dataValue}
-                  </p>
+                <div>
+                  <div className="font-bold text-white">{f.title}</div>
+                  <div className="text-sm mt-1" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.6 }}>{f.desc}</div>
                 </div>
+              </div>
+              <div className="flex flex-wrap gap-2 pt-4" style={{ borderTop: '1px solid var(--ya-border)' }}>
+                {f.specs.map((s) => (
+                  <span key={s} className="text-xs px-3 py-1 rounded-full" style={{ background: `${f.color}12`, color: f.color }}>{s}</span>
+                ))}
               </div>
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
 
-const DATA_POINTS = [
-  { icon: "MapPin", title: "Геолокация", desc: "Где паркуется, сколько едет, маршруты" },
-  { icon: "Camera", title: "Визуальные данные", desc: "HD фото кузова в динамике, повреждения, износ" },
-  { icon: "Wrench", title: "Сервисная история", desc: "Что ремонтировали, когда, у кого, за сколько" },
-  { icon: "TrendingUp", title: "Стоимость авто", desc: "Актуальная оценка на основе реального состояния" },
-  { icon: "User", title: "Профиль владельца", desc: "Поведение, паттерны, уровень ухода за авто" },
-  { icon: "Zap", title: "Риск-скоринг", desc: "Комплексная оценка для страховщиков и банков" },
-];
-
-const DATA_BUYERS = [
-  { icon: "Shield", title: "Страховщики", value: "₽800–2 000", unit: "за профиль/год", color: "#FFD700" },
-  { icon: "Building2", title: "Банки и лизинг", value: "₽500–1 200", unit: "при выдаче кредита", color: "#4F9EFF" },
-  { icon: "Car", title: "Автодилеры", value: "₽1 000–3 000", unit: "при сделке trade-in", color: "#FC3F1D" },
-  { icon: "Search", title: "Покупатели авто", value: "₽299–599", unit: "разовый отчёт", color: "#A78BFA" },
-];
-
-function DataSection() {
-  const { ref, inView } = useInView();
-  return (
-    <section id="data" className="ya-section" style={{ background: 'var(--ya-dark)' }}>
-      <div className="max-w-6xl mx-auto px-6">
-        <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
-          <SectionLabel>Ключевая ценность</SectionLabel>
-          <SectionTitle>Данные — главный актив</SectionTitle>
-          <SectionSubtitle>
-            Пользователи добровольно передают данные, получая взамен скидки и сервис. В пользовательском соглашении платформа получает право использовать и монетизировать эти данные.
-          </SectionSubtitle>
-        </div>
-
-        {/* Типы данных */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-12">
-          {DATA_POINTS.map((d, i) => (
-            <div key={d.title} className={`ya-card p-5 ${inView ? `ya-anim-up delay-${(i + 1) * 100}` : 'opacity-0'}`}>
-              <div className="ya-icon-circle mb-4">
-                <Icon name={d.icon} size={20} />
-              </div>
-              <div className="font-semibold text-white mb-1">{d.title}</div>
-              <div className="text-sm" style={{ color: 'var(--ya-text-secondary)' }}>{d.desc}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Кто покупает данные */}
-        <div className={`mb-6 ${inView ? 'ya-anim-up delay-400' : 'opacity-0'}`}>
-          <h3 className="text-xl font-bold text-white mb-6">Покупатели данных</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {DATA_BUYERS.map((b) => (
-              <div key={b.title} className="ya-card p-5 text-center">
-                <div className="w-10 h-10 rounded-xl mx-auto mb-3 flex items-center justify-center" style={{ background: `${b.color}18` }}>
-                  <Icon name={b.icon} size={18} style={{ color: b.color }} />
+        <div className={`mb-12 ${inView ? 'ya-anim-up delay-600' : 'opacity-0'}`}>
+          <h3 className="text-xl font-bold text-white mb-5">Перечень услуг</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            {SERVICES_LIST.map((s) => (
+              <div key={s.label} className="ya-card p-4">
+                <div className="ya-icon-circle mb-3" style={{ width: 36, height: 36, borderRadius: 10 }}>
+                  <Icon name={s.icon} size={16} />
                 </div>
-                <div className="font-semibold text-white text-sm mb-1">{b.title}</div>
-                <div className="text-xl font-bold" style={{ color: b.color }}>{b.value}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--ya-text-muted)' }}>{b.unit}</div>
+                <div className="font-medium text-white text-sm mb-1">{s.label}</div>
+                <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>{s.note}</div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Важная плашка */}
-        <div className={`p-6 rounded-2xl flex gap-4 ${inView ? 'ya-anim-up delay-600' : 'opacity-0'}`} style={{ background: 'rgba(255,215,0,0.06)', border: '1px solid rgba(255,215,0,0.2)' }}>
-          <Icon name="Info" size={20} style={{ color: 'var(--ya-yellow)', flexShrink: 0, marginTop: 2 }} />
-          <div>
-            <div className="font-semibold text-white mb-1">Правовая основа</div>
-            <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-              Пользователь добровольно загружает данные для улучшения сервиса. Пользовательское соглашение содержит явное согласие на обработку и коммерческое использование предоставленных материалов. Аналогичная модель используется крупнейшими платформами: Google, Meta, Яндекс.
-            </p>
+        <div className={`${inView ? 'ya-anim-up delay-700' : 'opacity-0'}`}>
+          <h3 className="text-xl font-bold text-white mb-2">Предиктивная диагностика</h3>
+          <p className="text-sm mb-6" style={{ color: 'var(--ya-text-secondary)' }}>
+            Помощь предлагается <strong className="text-white">до того, как водитель нажал кнопку</strong> — за счёт интеграции с телематикой Яндекс Авто и Навигатором.
+          </p>
+          <div className="grid md:grid-cols-4 gap-3">
+            {ALGO_STEPS.map((step, i) => (
+              <div key={step.num} className={`ya-card p-5 ${inView ? `ya-anim-up delay-${(i + 1) * 100 + 600}` : 'opacity-0'}`}>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold" style={{ background: step.color, color: '#000' }}>{step.num}</div>
+                </div>
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style={{ background: `${step.color}18` }}>
+                  <Icon name={step.icon} size={16} style={{ color: step.color }} />
+                </div>
+                <div className="font-semibold text-white text-sm mb-2">{step.title}</div>
+                <div className="text-xs" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.6 }}>{step.desc}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -171,49 +142,157 @@ function DataSection() {
   );
 }
 
-const MARKET_ITEMS = [
-  { label: "TAM — весь авторынок РФ", value: "₽2.1T", sub: "45 млн автовладельцев" },
-  { label: "SAM — целевая аудитория", value: "₽180B", sub: "Москва + города-миллионники" },
-  { label: "SOM — реалистичный охват", value: "₽4.2B", sub: "500 000 пользователей к 2028" },
+// ─── МАРКЕТИНГ ─────────────────────────────────────────────────────────────────
+
+const MARKETING_CHANNELS = [
+  {
+    icon: "MessageCircle", tag: "Сарафанное радио", color: "#4F9EFF",
+    title: "Telegram-сообщества дальнобойщиков",
+    desc: "Более 300 активных каналов с аудиторией 2–3 млн водителей-профессионалов. Живые отзывы коллег — главный фактор доверия в B2B.",
+    actions: ["Разборы реальных случаев от первого лица", "Партнёрство с лидерами мнений (50K+ подп.)", "Посты на Trans.ru, Logist.ru, АвтоФорум"],
+  },
+  {
+    icon: "Gift", tag: "Реферальная программа", color: "#FFD700",
+    title: "Диспетчеры и менеджеры автопарков",
+    desc: "Ключевые ЛПР в B2B — диспетчеры и логисты. Реферальная схема: ₽3 000 за каждый подключённый парк от 10 ТС.",
+    actions: ["Бонус диспетчеру ₽3 000 за парк 10+ авто", "Надбавка за пролонгацию контракта", "Закрытый клуб VIP-партнёров"],
+  },
+  {
+    icon: "FileText", tag: "Контент-маркетинг", color: "#A78BFA",
+    title: "Блог Яндекса и медиа",
+    desc: "Экспертный контент укрепляет доверие. Тематика: безопасность зимой, техника, экстремальные ситуации на дороге.",
+    actions: ["«Как выехать из заноса» — SEO-статьи", "Видео: лебёдка 50 000 lbs в деле", "Инфографика: зимний уход за авто"],
+  },
+  {
+    icon: "Star", tag: "Экосистема Яндекс", color: "#FC3F1D",
+    title: "Нативная интеграция в Яндекс Плюс",
+    desc: "60+ млн активных подписчиков — готовый канал с нулевым CAC. Баннер в Навигаторе в момент нужды.",
+    actions: ["Баннер при температуре < -10°C в Навигаторе", "Кешбэк баллами Плюс за вызов мастера", "Специальный оффер при продлении Плюс"],
+  },
 ];
 
-const ADVANTAGES = [
-  { icon: "Lock", title: "Нет аналогов", desc: "Ни один игрок не строит прозрачный рынок авто-данных с добровольным участием" },
-  { icon: "Repeat", title: "Рекуррентная выручка", desc: "Подписочная модель даёт предсказуемый денежный поток" },
-  { icon: "Network", title: "Сетевой эффект", desc: "Каждый новый пользователь повышает ценность данных для покупателей" },
-  { icon: "Globe", title: "Масштабируемость", desc: "Модель легко переносится на любой крупный город без владения активами" },
-];
-
-function MarketSection() {
+function MarketingSection() {
   const { ref, inView } = useInView();
   return (
-    <section id="market" className="ya-section" style={{ background: 'var(--ya-black)' }}>
+    <section id="marketing" className="ya-section" style={{ background: 'var(--ya-black)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
-          <SectionLabel>Рынок</SectionLabel>
-          <SectionTitle>Объём возможности</SectionTitle>
-          <SectionSubtitle>Авторынок России — один из крупнейших в мире. При этом рынок прозрачности данных об автомобилях не занят никем.</SectionSubtitle>
+          <SectionLabel>Раздел 3 · Маркетинг</SectionLabel>
+          <SectionTitle>Стратегия продвижения</SectionTitle>
+          <SectionSubtitle>
+            Четыре канала роста — от сарафанного радио в Telegram до нативной интеграции в Яндекс Плюс.
+          </SectionSubtitle>
         </div>
-
-        <div className="grid md:grid-cols-3 gap-3 mb-12">
-          {MARKET_ITEMS.map((m, i) => (
-            <div key={m.label} className={`ya-card p-6 ${inView ? `ya-anim-up delay-${(i + 1) * 150}` : 'opacity-0'}`}>
-              <div className="text-xs font-semibold mb-3" style={{ color: 'var(--ya-text-muted)', letterSpacing: '0.06em' }}>{m.label}</div>
-              <div className="text-4xl font-bold mb-2" style={{ color: 'var(--ya-yellow)' }}>{m.value}</div>
-              <div className="text-sm" style={{ color: 'var(--ya-text-secondary)' }}>{m.sub}</div>
+        <div className="grid md:grid-cols-2 gap-4">
+          {MARKETING_CHANNELS.map((ch, i) => (
+            <div key={ch.title} className={`ya-card p-6 ${inView ? `ya-anim-up delay-${(i + 1) * 150}` : 'opacity-0'}`}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${ch.color}18` }}>
+                  <Icon name={ch.icon} size={18} style={{ color: ch.color }} />
+                </div>
+                <span className="text-xs font-semibold" style={{ color: ch.color, letterSpacing: '0.05em' }}>{ch.tag.toUpperCase()}</span>
+              </div>
+              <div className="font-bold text-white mb-2">{ch.title}</div>
+              <p className="text-sm mb-4" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>{ch.desc}</p>
+              <div className="space-y-2 pt-4" style={{ borderTop: '1px solid var(--ya-border)' }}>
+                {ch.actions.map((a) => (
+                  <div key={a} className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: ch.color }} />
+                    <span className="text-xs" style={{ color: 'var(--ya-text-secondary)' }}>{a}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="grid md:grid-cols-2 gap-3">
-          {ADVANTAGES.map((a, i) => (
-            <div key={a.title} className={`ya-card p-6 flex gap-4 ${inView ? `ya-anim-up delay-${(i + 1) * 100 + 400}` : 'opacity-0'}`}>
-              <div className="ya-icon-circle flex-shrink-0">
-                <Icon name={a.icon} size={20} />
-              </div>
-              <div>
-                <div className="font-semibold text-white mb-1">{a.title}</div>
-                <div className="text-sm" style={{ color: 'var(--ya-text-secondary)' }}>{a.desc}</div>
+// ─── РИСКИ ─────────────────────────────────────────────────────────────────────
+
+const RISKS = [
+  {
+    icon: "UserX", title: "Нехватка квалифицированных кадров",
+    severity: "Высокий", severityColor: "#FC3F1D",
+    desc: "Операторы спецтехники — дефицитная профессия. Высокая текучка в сезон.",
+    mitigation: [
+      "Собственная учебная программа совместно с автошколами",
+      "Сертификат «Яндекс Механик» — преимущество на рынке труда",
+      "Gamification и рейтинги мастеров с финансовым бонусом",
+      "Партнёрство с военными водителями-механиками в запасе",
+    ],
+  },
+  {
+    icon: "DollarSign", title: "Высокие CAPEX на спецтехнику",
+    severity: "Высокий", severityColor: "#FC3F1D",
+    desc: "Тяжёлый эвакуатор — 8–15 млн руб. Масштабирование требует значительных вложений в парк.",
+    mitigation: [
+      "Asset-light старт: год 1 — аренда и субподряд с партнёрами",
+      "Собственный парк только для лёгких бригад",
+      "Лизинговые программы при поддержке Яндекс Банка",
+      "Покупка техники только при достижении точки безубыточности",
+    ],
+  },
+  {
+    icon: "Building2", title: "Конкуренция с РАМК и дилерами",
+    severity: "Средний", severityColor: "#FFD700",
+    desc: "РАМК, дилерские программы страховщиков и агрегаторы «Авто SOS» уже занимают рынок.",
+    mitigation: [
+      "УТП — предиктивность: конкуренты реагируют, мы предупреждаем",
+      "Интеграция с Навигатором недоступна конкурентам без Яндекса",
+      "Специализация на тяжёлой технике — ниша с низкой конкуренцией",
+      "Цена ниже конкурентов на 30–40% за счёт аддона к Плюс",
+    ],
+  },
+  {
+    icon: "Cloud", title: "Сезонность вызовов",
+    severity: "Средний", severityColor: "#FFD700",
+    desc: "Пик — ноябрь–март. Летом загрузка падает на 60%. Постоянные издержки давят на маржу.",
+    mitigation: [
+      "Подписочная модель сглаживает сезонность: выручка стабильна",
+      "Летний оффсезон: плановое ТО и диагностика (новый продукт)",
+      "Гибкий штат: фиксированное ядро + фрилансеры в пик",
+    ],
+  },
+];
+
+function RisksSection() {
+  const { ref, inView } = useInView();
+  return (
+    <section id="risks" className="ya-section" style={{ background: 'var(--ya-dark)' }}>
+      <div className="max-w-6xl mx-auto px-6">
+        <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
+          <SectionLabel>Раздел 4 · Риски</SectionLabel>
+          <SectionTitle>Анализ рисков<br />и митигация</SectionTitle>
+          <SectionSubtitle>Честный взгляд на ключевые угрозы и конкретные меры их снижения.</SectionSubtitle>
+        </div>
+        <div className="space-y-3">
+          {RISKS.map((r, i) => (
+            <div key={r.title} className={`ya-card p-6 ${inView ? `ya-anim-up delay-${(i + 1) * 150}` : 'opacity-0'}`}>
+              <div className="flex flex-col md:flex-row md:items-start gap-6">
+                <div className="md:w-72 flex-shrink-0">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${r.severityColor}18` }}>
+                      <Icon name={r.icon} size={18} style={{ color: r.severityColor }} />
+                    </div>
+                    <span className="text-xs font-semibold px-2 py-1 rounded" style={{ background: `${r.severityColor}18`, color: r.severityColor }}>{r.severity} риск</span>
+                  </div>
+                  <div className="font-bold text-white mb-2">{r.title}</div>
+                  <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.6 }}>{r.desc}</p>
+                </div>
+                <div className="flex-1">
+                  <div className="text-xs font-semibold mb-3" style={{ color: 'var(--ya-text-muted)', letterSpacing: '0.06em' }}>МЕРЫ МИТИГАЦИИ</div>
+                  <div className="space-y-2">
+                    {r.mitigation.map((m) => (
+                      <div key={m} className="flex items-start gap-2">
+                        <Icon name="CheckCircle2" size={14} style={{ color: '#4CAF50', marginTop: 2, flexShrink: 0 }} />
+                        <span className="text-sm" style={{ color: 'var(--ya-text-secondary)' }}>{m}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -226,9 +305,9 @@ function MarketSection() {
 export default function ContentSections() {
   return (
     <>
-      <ServicesSection />
-      <DataSection />
-      <MarketSection />
+      <OperationsSection />
+      <MarketingSection />
+      <RisksSection />
     </>
   );
 }

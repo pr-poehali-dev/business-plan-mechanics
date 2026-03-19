@@ -1,117 +1,208 @@
 import Icon from "@/components/ui/icon";
 import { SectionLabel, SectionTitle, SectionSubtitle, useInView } from "./shared";
 
-const WHY_YANDEX = [
-  {
-    icon: "Database",
-    title: "Яндекс уже владеет экосистемой",
-    desc: "Яндекс.Авто, Яндекс Go, Яндекс.Страхование — идеальная инфраструктура для интеграции. Механики органично встраиваются в существующие продукты.",
-  },
+// ─── KPI ПЕРВОГО ГОДА ──────────────────────────────────────────────────────────
+
+const KPIS = [
   {
     icon: "Users",
-    title: "Готовая аудитория",
-    desc: "60+ млн активных пользователей Яндекса. Запуск «Механики» внутри экосистемы даёт мгновенный доступ без маркетинговых затрат.",
+    category: "Подписчики",
+    color: "#4F9EFF",
+    items: [
+      { label: "B2C подписчики (конец года)", target: "40 000", stretch: "70 000" },
+      { label: "B2B парков подключено", target: "150", stretch: "300" },
+      { label: "Средний чек B2C", target: "₽620/мес", stretch: "₽750/мес" },
+      { label: "Отток (churn rate)", target: "< 5%/мес", stretch: "< 3%/мес" },
+    ],
+  },
+  {
+    icon: "Clock",
+    category: "Операционные",
+    color: "#FFD700",
+    items: [
+      { label: "Время прибытия экипажа (Москва)", target: "< 20 мин", stretch: "< 15 мин" },
+      { label: "Время прибытия (регионы)", target: "< 35 мин", stretch: "< 25 мин" },
+      { label: "NPS (индекс лояльности)", target: "> 55", stretch: "> 70" },
+      { label: "Решение с первого выезда (FCR)", target: "> 85%", stretch: "> 92%" },
+    ],
   },
   {
     icon: "TrendingUp",
-    title: "Данные усиливают друг друга",
-    desc: "Авто-данные «Механики» обогащают профили пользователей Яндекса. Это повышает точность рекламной таргетировки и финансовых продуктов.",
+    category: "Финансовые",
+    color: "#A78BFA",
+    items: [
+      { label: "ARR (годовая выручка)", target: "₽240M", stretch: "₽380M" },
+      { label: "Точка безубыточности", target: "Q3 2026", stretch: "Q2 2026" },
+      { label: "EBITDA маржа (конец года)", target: "18%", stretch: "25%" },
+      { label: "LTV:CAC (соотношение)", target: "> 3x", stretch: "> 5x" },
+    ],
   },
   {
-    icon: "Globe",
-    title: "Масштаб без риска",
-    desc: "Asset-light модель: Яндекс не покупает флот, не строит СТО. Только платформа, данные и маркетплейс услуг.",
+    icon: "Cpu",
+    category: "Технологические",
+    color: "#FC3F1D",
+    items: [
+      { label: "Доля предиктивных вызовов", target: "20%", stretch: "35%" },
+      { label: "Точность предсказания инцидента", target: "> 70%", stretch: "> 82%" },
+      { label: "Uptime платформы", target: "99.5%", stretch: "99.9%" },
+      { label: "Охват телематикой (от парка)", target: "60%", stretch: "85%" },
+    ],
   },
 ];
 
-const STEPS = [
-  {
-    num: "01",
-    title: "Пилот «Снег»",
-    desc: "30 дней, один район Москвы. 50 первых пользователей, замер метрик и NPS.",
-    icon: "Snowflake",
-  },
-  {
-    num: "02",
-    title: "Цифровой паспорт",
-    desc: "5 партнёрских СТО, запуск VIN-верификации, первые 500 досье.",
-    icon: "FileText",
-  },
-  {
-    num: "03",
-    title: "Data продукт",
-    desc: "Первые сделки по продаже данных страховщикам и дилерам.",
-    icon: "Database",
-  },
-];
-
-function PitchSection() {
+function KpiSection() {
   const { ref, inView } = useInView();
   return (
-    <section id="pitch" className="ya-section relative overflow-hidden" style={{ background: 'var(--ya-dark)' }}>
-      {/* Yellow glow */}
-      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] rounded-full blur-[100px] opacity-[0.05]" style={{ background: 'var(--ya-yellow)' }} />
-
-      <div className="relative max-w-6xl mx-auto px-6">
+    <section id="pitch" className="ya-section" style={{ background: 'var(--ya-black)' }}>
+      <div className="max-w-6xl mx-auto px-6">
         <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
-          <SectionLabel>Предложение</SectionLabel>
-          <SectionTitle>
-            Почему это проект<br />
-            <span style={{ color: 'var(--ya-yellow)' }}>для Яндекса</span>
-          </SectionTitle>
+          <SectionLabel>KPI · Год 1</SectionLabel>
+          <SectionTitle>Ключевые показатели<br />первого года</SectionTitle>
           <SectionSubtitle>
-            «Механики» — не конкурент экосистеме Яндекса. Это недостающий слой, который соединяет физический авторынок с цифровым профилем пользователя.
+            Цель — 40 000 B2C подписчиков и среднее время прибытия экипажа менее 20 минут в Москве к концу 2026 года.
           </SectionSubtitle>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-3 mb-12">
-          {WHY_YANDEX.map((w, i) => (
-            <div key={w.title} className={`ya-card p-6 flex gap-4 ${inView ? `ya-anim-up delay-${(i + 1) * 150}` : 'opacity-0'}`}>
-              <div className="ya-icon-circle flex-shrink-0">
-                <Icon name={w.icon} size={20} />
+        <div className="grid md:grid-cols-2 gap-4 mb-10">
+          {KPIS.map((kpi, i) => (
+            <div key={kpi.category} className={`ya-card p-6 ${inView ? `ya-anim-up delay-${(i + 1) * 150}` : 'opacity-0'}`}>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${kpi.color}18` }}>
+                  <Icon name={kpi.icon} size={18} style={{ color: kpi.color }} />
+                </div>
+                <div className="font-bold text-white">{kpi.category}</div>
               </div>
-              <div>
-                <div className="font-semibold text-white mb-2">{w.title}</div>
-                <div className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>{w.desc}</div>
+              <div className="space-y-0" style={{ borderTop: '1px solid var(--ya-border)' }}>
+                {kpi.items.map((item) => (
+                  <div key={item.label} className="py-3 flex items-center justify-between gap-4" style={{ borderBottom: '1px solid var(--ya-border)' }}>
+                    <div className="text-sm flex-1" style={{ color: 'var(--ya-text-secondary)' }}>{item.label}</div>
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                      <span className="text-sm font-semibold text-white">{item.target}</span>
+                      <span className="text-xs px-2 py-0.5 rounded" style={{ background: `${kpi.color}15`, color: kpi.color }}>↑ {item.stretch}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Первые шаги */}
-        <div className={`mb-12 ${inView ? 'ya-anim-up delay-500' : 'opacity-0'}`}>
-          <h3 className="text-xl font-bold text-white mb-6">Первые три шага</h3>
-          <div className="grid md:grid-cols-3 gap-3">
-            {STEPS.map((s) => (
-              <div key={s.num} className="ya-card p-6">
-                <div className="text-4xl font-bold mb-4" style={{ color: 'rgba(255,215,0,0.15)' }}>{s.num}</div>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'rgba(255,215,0,0.1)' }}>
-                  <Icon name={s.icon} size={18} style={{ color: 'var(--ya-yellow)' }} />
+        {/* Дорожная карта запуска */}
+        <div className={`mb-10 ${inView ? 'ya-anim-up delay-600' : 'opacity-0'}`}>
+          <h3 className="text-xl font-bold text-white mb-5">Дорожная карта запуска</h3>
+          <div className="grid md:grid-cols-4 gap-3">
+            {[
+              { period: "Q2 2026", color: "#4F9EFF", title: "Пилот", items: ["50 мастеров в Москве", "2 000 первых подписчиков", "Интеграция с Навигатором"] },
+              { period: "Q3 2026", color: "#FFD700", title: "Масштаб", items: ["200 мастеров", "15 000 подписчиков", "Запуск B2B (50 парков)"] },
+              { period: "Q4 2026", color: "#A78BFA", title: "Регионы", items: ["СПб, Екатеринбург", "40 000 подписчиков", "Предиктивная диагностика"] },
+              { period: "2027", color: "#FC3F1D", title: "Федерал", items: ["5 городов-миллионников", "280 000 подписчиков", "ARR ₽1.8B"] },
+            ].map((stage) => (
+              <div key={stage.period} className="ya-card p-5">
+                <div className="font-bold mb-1" style={{ color: stage.color }}>{stage.period}</div>
+                <div className="text-white font-semibold mb-3">{stage.title}</div>
+                {stage.items.map((item) => (
+                  <div key={item} className="flex items-start gap-2 mb-2">
+                    <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: stage.color }} />
+                    <span className="text-xs" style={{ color: 'var(--ya-text-secondary)' }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── О КОМАНДЕ / АВТОРЕ ────────────────────────────────────────────────────────
+
+const AUTHOR_STRENGTHS = [
+  { icon: "Route", label: "Практик авто-путешествий", desc: "10+ лет дальних поездок, знаю боль изнутри" },
+  { icon: "BarChart2", label: "Анализ рынка", desc: "Исследование конкурентов, сегментов и ценообразования" },
+  { icon: "Layers", label: "Системное мышление", desc: "Экосистемный подход: продукт, данные, монетизация" },
+  { icon: "Target", label: "Ориентация на данные", desc: "KPI, юнит-экономика, финансовые прогнозы" },
+];
+
+const AUTHOR_VISION = [
+  "Яндекс Механика — это не просто «эвакуатор по кнопке». Это платформа, которая знает о состоянии вашего автомобиля больше, чем вы сами.",
+  "Я хочу построить сервис, который помогает людям не бояться дальних поездок. Где водитель знает: что бы ни случилось — помощь уже едет.",
+  "Интеграция с экосистемой Яндекса — это не техническое решение, это стратегическое преимущество. Навигатор видит каждый автомобиль на дороге. Нужно просто научить его предсказывать проблемы.",
+];
+
+function TeamSection() {
+  const { ref, inView } = useInView();
+  return (
+    <section id="team" className="ya-section relative overflow-hidden" style={{ background: 'var(--ya-dark)' }}>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[100px] opacity-[0.04]" style={{ background: 'var(--ya-yellow)' }} />
+      <div className="relative max-w-6xl mx-auto px-6">
+        <div ref={ref} className={`mb-12 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
+          <SectionLabel>Об авторе</SectionLabel>
+          <SectionTitle>Кто за этим стоит</SectionTitle>
+          <SectionSubtitle>
+            Идея рождена из личного опыта — и оформлена как бизнес-кейс с конкретными цифрами и планом.
+          </SectionSubtitle>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 mb-10">
+          {/* Левая — карточка автора */}
+          <div className={`${inView ? 'ya-anim-up delay-200' : 'opacity-0'}`}>
+            <div className="ya-card p-8">
+              <div className="flex items-center gap-5 mb-6 pb-6" style={{ borderBottom: '1px solid var(--ya-border)' }}>
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 text-3xl" style={{ background: 'rgba(255,215,0,0.1)' }}>
+                  🚗
                 </div>
-                <div className="font-semibold text-white mb-2">{s.title}</div>
-                <div className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.6 }}>{s.desc}</div>
+                <div>
+                  <div className="font-bold text-white text-xl">Автор концепции</div>
+                  <div className="text-sm mt-1" style={{ color: 'var(--ya-text-secondary)' }}>Product thinker · Стратегия · Авторынок РФ</div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {AUTHOR_STRENGTHS.map((s) => (
+                  <div key={s.label} className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(255,215,0,0.1)' }}>
+                      <Icon name={s.icon} size={15} style={{ color: 'var(--ya-yellow)' }} />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-white">{s.label}</div>
+                      <div className="text-xs" style={{ color: 'var(--ya-text-muted)' }}>{s.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Правая — видение */}
+          <div className={`flex flex-col gap-4 ${inView ? 'ya-anim-up delay-350' : 'opacity-0'}`}>
+            <div className="text-xs font-semibold mb-2" style={{ color: 'var(--ya-text-muted)', letterSpacing: '0.06em' }}>ВИДЕНИЕ ПРОЕКТА</div>
+            {AUTHOR_VISION.map((quote, i) => (
+              <div key={i} className="ya-card p-5" style={{ borderLeft: `3px solid ${i === 0 ? '#FFD700' : i === 1 ? '#4F9EFF' : '#FC3F1D'}` }}>
+                <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
+                  «{quote}»
+                </p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA блок */}
-        <div className={`p-8 md:p-10 rounded-2xl ${inView ? 'ya-anim-up delay-700' : 'opacity-0'}`} style={{ background: 'rgba(255,215,0,0.06)', border: '1px solid rgba(255,215,0,0.15)' }}>
+        {/* Что ищу */}
+        <div className={`p-8 rounded-2xl ${inView ? 'ya-anim-up delay-500' : 'opacity-0'}`} style={{ background: 'rgba(255,215,0,0.05)', border: '1px solid rgba(255,215,0,0.2)' }}>
           <div className="flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-1">
-              <div className="text-2xl font-bold text-white mb-2">Готов запустить пилот</div>
+              <div className="text-2xl font-bold text-white mb-2">Готов к следующему шагу</div>
               <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-                Есть концепция, юнит-экономика и понимание рынка. Ищу команду и ресурсы Яндекса, чтобы проверить гипотезу за 30 дней.
+                Ищу возможность реализовать концепцию внутри экосистемы Яндекса — как PM-проект, стартап-треку или внутренний пилот. Готов защитить бизнес-план, пройти технический разбор и выйти на пилот за 90 дней.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
-              <button className="ya-btn-primary">
-                Обсудить проект
-                <Icon name="ArrowRight" size={16} />
-              </button>
-              <button className="ya-btn-secondary">
-                Скачать PDF
-              </button>
+              <a href="mailto:" className="ya-btn-primary">
+                Связаться
+                <Icon name="Mail" size={16} />
+              </a>
+              <a href="#pitch" className="ya-btn-secondary">
+                Смотреть KPI
+              </a>
             </div>
           </div>
         </div>
@@ -124,15 +215,15 @@ function Footer() {
   return (
     <footer className="py-10" style={{ background: 'var(--ya-black)', borderTop: '1px solid var(--ya-border)' }}>
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-white">Механики</span>
-          <span style={{ color: 'var(--ya-red)' }}>.</span>
+        <div className="flex items-center gap-1 font-bold text-white text-lg">
+          Яндекс<span style={{ color: 'var(--ya-yellow)' }}>.</span>Механика
         </div>
         <div className="text-sm" style={{ color: 'var(--ya-text-muted)' }}>
-          Концепция продукта · 2026 · Конфиденциально
+          Бизнес-план · 2026 · Конфиденциально
         </div>
-        <div className="flex items-center gap-4">
-          <span className="text-sm" style={{ color: 'var(--ya-text-muted)' }}>v2.0</span>
+        <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--ya-text-muted)' }}>
+          <Icon name="Globe" size={13} />
+          Рынок $32.8B · CAGR 5.6%
         </div>
       </div>
     </footer>
@@ -142,7 +233,8 @@ function Footer() {
 export default function TeamProposal() {
   return (
     <>
-      <PitchSection />
+      <KpiSection />
+      <TeamSection />
       <Footer />
     </>
   );
