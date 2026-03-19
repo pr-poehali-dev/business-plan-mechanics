@@ -6,7 +6,7 @@ import { SectionLabel, SectionTitle, SectionSubtitle, useInView } from "./shared
 const B2C_PLANS = [
   {
     name: "Базовый",
-    tag: "Аддон к Яндекс Плюс",
+    tag: "Аддон к подписке Плюс",
     price: "449",
     color: "#4F9EFF",
     features: [
@@ -105,7 +105,7 @@ function FinanceSection() {
         </div>
 
         {/* B2B тарифы */}
-        <h3 className={`text-xl font-bold text-white mb-3 ${inView ? 'ya-anim-up delay-400' : 'opacity-0'}`}>B2B — Логистические компании (Яндекс Про)</h3>
+        <h3 className={`text-xl font-bold text-white mb-3 ${inView ? 'ya-anim-up delay-400' : 'opacity-0'}`}>B2B — Логистические компании</h3>
         <div className={`ya-card overflow-hidden mb-10 ${inView ? 'ya-anim-up delay-500' : 'opacity-0'}`}>
           <div className="grid grid-cols-4 px-6 py-3" style={{ background: 'rgba(255,255,255,0.04)', borderBottom: '1px solid var(--ya-border)' }}>
             {["Размер парка", "Цена за ТС", "Скидка", "Условия"].map((h) => (

@@ -49,7 +49,7 @@ const ALGO_STEPS = [
   {
     num: "01", icon: "Cpu", color: "#4F9EFF",
     title: "Телематика фиксирует аномалию",
-    desc: "Яндекс Авто и OBD-датчик регистрируют снижение давления в шинах, падение заряда АКБ или ошибку двигателя.",
+    desc: "Телематический блок и OBD-датчик регистрируют снижение давления в шинах, падение заряда АКБ или ошибку двигателя.",
   },
   {
     num: "02", icon: "MapPin", color: "#FFD700",
@@ -155,7 +155,7 @@ function OperationsSection() {
         <div className={`${inView ? 'ya-anim-up delay-700' : 'opacity-0'}`}>
           <h3 className="text-xl font-bold text-white mb-2">Предиктивная диагностика</h3>
           <p className="text-sm mb-6" style={{ color: 'var(--ya-text-secondary)' }}>
-            Помощь предлагается <strong className="text-white">до того, как водитель нажал кнопку</strong> — за счёт интеграции с телематикой Яндекс Авто и Навигатором.
+            Помощь предлагается <strong className="text-white">до того, как водитель нажал кнопку</strong> — за счёт телематики автомобиля и данных навигационного сервиса.
           </p>
           <div className="grid md:grid-cols-4 gap-3">
             {ALGO_STEPS.map((step, i) => (

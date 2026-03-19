@@ -51,20 +51,20 @@ export default function SummarySection() {
         <div ref={ref} className={`mb-14 ${inView ? 'ya-anim-up' : 'opacity-0'}`}>
           <SectionLabel>Резюме · Executive Summary</SectionLabel>
           <SectionTitle>
-            Яндекс Механика —<br />
+            Механики —<br />
             <span style={{ color: 'var(--ya-yellow)' }}>бизнес-план</span>
           </SectionTitle>
 
           <div className="mt-6 grid md:grid-cols-2 gap-6">
             <div>
               <p className="text-base mb-4" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
-                <strong className="text-white">Яндекс Механика</strong> — подписочный сервис экстренной помощи на дорогах, интегрированный в экосистему Яндекса. Продукт закрывает критический пробел: при охвате 82% водителей через Навигатор у Яндекса нет монетизированного сервиса для физической помощи в дороге.
+                <strong className="text-white">Механики</strong> — подписочный сервис экстренной помощи на дорогах с глубокой интеграцией в навигационные и телематические системы. Продукт закрывает критический пробел: при охвате 82% водителей через навигаторы на рынке нет монетизированного сервиса физической помощи.
               </p>
               <p className="text-base mb-4" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
                 Мировой рынок roadside assistance — <strong className="text-white">$32.8 млрд</strong> с ежегодным ростом <strong className="text-white">5.6%</strong>. B2B сегмент (грузовые перевозки) растёт быстрее — <strong className="text-white">7.28% CAGR</strong> — за счёт бума логистики последней мили.
               </p>
               <p className="text-base" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.8 }}>
-                Конкурентное преимущество: Яндекс Навигатор видит каждый автомобиль на дороге и знает условия маршрута. Это позволяет <strong className="text-white">предсказывать инциденты до их возникновения</strong> и отправлять помощь превентивно — чего не умеет ни один конкурент на рынке.
+                Конкурентное преимущество: навигационные сервисы видят каждый автомобиль на дороге и знают условия маршрута. Это позволяет <strong className="text-white">предсказывать инциденты до их возникновения</strong> и отправлять помощь превентивно — чего не умеет ни один конкурент на рынке.
               </p>
             </div>
             <div className="space-y-3">
@@ -83,7 +83,7 @@ export default function SummarySection() {
               <div className="p-5 rounded-2xl" style={{ background: 'rgba(252,63,29,0.05)', border: '1px solid rgba(252,63,29,0.15)' }}>
                 <div className="text-xs font-semibold mb-2" style={{ color: '#FC3F1D', letterSpacing: '0.06em' }}>КЛЮЧЕВОЙ КОНКУРЕНТ</div>
                 <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-                  РАМК и страховые ассистанс-службы. Их слабость — <strong className="text-white">реактивность</strong>: ждут звонка. Яндекс Механика действует проактивно, используя данные, недоступные конкурентам.
+                  РАМК и страховые ассистанс-службы. Их слабость — <strong className="text-white">реактивность</strong>: ждут звонка. Механики действуют проактивно, используя данные телематики и навигации, недоступные конкурентам.
                 </p>
               </div>
             </div>

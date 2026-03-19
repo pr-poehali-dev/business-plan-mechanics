@@ -26,7 +26,7 @@ function Nav({ active }: { active: string }) {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-1 font-bold text-white text-lg">
-          Яндекс<span style={{ color: 'var(--ya-yellow)' }}>.</span>Механика
+          Механики<span style={{ color: 'var(--ya-yellow)' }}>.</span>
         </div>
 
         <div className="hidden md:flex items-center gap-1">

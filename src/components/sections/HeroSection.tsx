@@ -17,13 +17,12 @@ export default function HeroSection() {
         <div className="max-w-3xl">
           <div className="flex items-center gap-3 mb-8 ya-anim-up">
             <span className="ya-tag">Бизнес-план</span>
-            <span className="ya-tag ya-tag-white">Яндекс · 2026</span>
+            <span className="ya-tag ya-tag-white">Механики · 2026</span>
             <span className="ya-tag ya-tag-red">Конфиденциально</span>
           </div>
 
           <h1 className="text-6xl md:text-7xl font-bold text-white leading-[1.08] mb-6 ya-anim-up delay-100" style={{ letterSpacing: '-0.02em' }}>
-            Яндекс<br />
-            <span style={{ color: 'var(--ya-yellow)' }}>Механика</span>
+            <span style={{ color: 'var(--ya-yellow)' }}>Механики</span>
             <span style={{ color: 'var(--ya-red)' }}>.</span>
           </h1>
 
@@ -32,17 +31,17 @@ export default function HeroSection() {
           </p>
 
           <p className="text-base mb-6 max-w-xl ya-anim-up delay-300" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-            Миссия — обеспечить бесперебойное движение и безопасность на дорогах России. Предиктивная помощь через телематику Яндекс Авто, охват 82% водителей через Навигатор, эвакуация до 60 тонн с обледенелых склонов.
+            Миссия — обеспечить бесперебойное движение и безопасность на дорогах России. Предиктивная помощь через телематику автомобиля, охват 82% водителей через навигационные сервисы, эвакуация до 60 тонн с обледенелых склонов.
           </p>
 
           <div className="flex flex-wrap gap-3 mb-4 ya-anim-up delay-300">
             <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--ya-border)' }}>
               <Icon name="Users" size={14} style={{ color: 'var(--ya-yellow)' }} />
-              <span className="text-xs" style={{ color: 'var(--ya-text-secondary)' }}>B2C — Яндекс Плюс</span>
+              <span className="text-xs" style={{ color: 'var(--ya-text-secondary)' }}>B2C — подписка Плюс</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--ya-border)' }}>
               <Icon name="Truck" size={14} style={{ color: 'var(--ya-yellow)' }} />
-              <span className="text-xs" style={{ color: 'var(--ya-text-secondary)' }}>B2B — Яндекс Про</span>
+              <span className="text-xs" style={{ color: 'var(--ya-text-secondary)' }}>B2B — корпоративный тариф</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--ya-border)' }}>
               <Icon name="MapPin" size={14} style={{ color: 'var(--ya-yellow)' }} />

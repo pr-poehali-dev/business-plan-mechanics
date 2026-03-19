@@ -125,9 +125,9 @@ const AUTHOR_STRENGTHS = [
 ];
 
 const AUTHOR_VISION = [
-  "Яндекс Механика — это не просто «эвакуатор по кнопке». Это платформа, которая знает о состоянии вашего автомобиля больше, чем вы сами.",
+  "Механики — это не просто «эвакуатор по кнопке». Это платформа, которая знает о состоянии вашего автомобиля больше, чем вы сами.",
   "Я хочу построить сервис, который помогает людям не бояться дальних поездок. Где водитель знает: что бы ни случилось — помощь уже едет.",
-  "Интеграция с экосистемой Яндекса — это не техническое решение, это стратегическое преимущество. Навигатор видит каждый автомобиль на дороге. Нужно просто научить его предсказывать проблемы.",
+  "Предиктивная телематика и навигация — это не техническая фича, это стратегическое преимущество. Навигатор видит каждый автомобиль на дороге. Нужно просто научить его предсказывать проблемы.",
 ];
 
 function TeamSection() {
@@ -156,9 +156,9 @@ function TeamSection() {
                   <div className="font-bold text-white text-xl">Автор концепции</div>
                   <div className="text-sm mt-1 mb-3" style={{ color: 'var(--ya-text-secondary)' }}>Product thinker · Стратегия · Авторынок РФ</div>
                   <div className="flex flex-wrap gap-2">
-                    <a href="mailto:your@email.com" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(255,215,0,0.1)', color: 'var(--ya-yellow)' }}>
+                    <a href="mailto:bgs1990st@yandex.ru" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(255,215,0,0.1)', color: 'var(--ya-yellow)' }}>
                       <Icon name="Mail" size={12} />
-                      your@email.com
+                      bgs1990st@yandex.ru
                     </a>
                     <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ background: 'rgba(79,158,255,0.1)', color: '#4F9EFF' }}>
                       <Icon name="Linkedin" size={12} />
@@ -206,11 +206,11 @@ function TeamSection() {
             <div className="flex-1">
               <div className="text-2xl font-bold text-white mb-2">Готов к следующему шагу</div>
               <p className="text-sm" style={{ color: 'var(--ya-text-secondary)', lineHeight: 1.7 }}>
-                Ищу возможность реализовать концепцию внутри экосистемы Яндекса — как PM-проект, стартап-треку или внутренний пилот. Готов защитить бизнес-план, пройти технический разбор и выйти на пилот за 90 дней.
+                Ищу партнёра или инвестора для реализации концепции. Готов защитить бизнес-план, пройти технический разбор и выйти на пилот за 90 дней.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
-              <a href="mailto:" className="ya-btn-primary">
+              <a href="mailto:bgs1990st@yandex.ru" className="ya-btn-primary">
                 Связаться
                 <Icon name="Mail" size={16} />
               </a>
@@ -230,7 +230,7 @@ function Footer() {
     <footer className="py-10" style={{ background: 'var(--ya-black)', borderTop: '1px solid var(--ya-border)' }}>
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-1 font-bold text-white text-lg">
-          Яндекс<span style={{ color: 'var(--ya-yellow)' }}>.</span>Механика
+          Механики<span style={{ color: 'var(--ya-yellow)' }}>.</span>
         </div>
         <div className="text-sm" style={{ color: 'var(--ya-text-muted)' }}>
           Бизнес-план · 2026 · Конфиденциально
