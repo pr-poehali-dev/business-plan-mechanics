@@ -341,3 +341,30 @@
   background: var(--m-yellow);
   border-radius: 2px;
 }
+
+/* ── Печать / PDF ── */
+@media print {
+  nav,
+  .m-btn-primary,
+  .m-btn-secondary,
+  button {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .m-section {
+    padding: 40px 0;
+    page-break-inside: avoid;
+  }
+  .m-card {
+    border: 1px solid #ddd !important;
+    background: #f9f9f9 !important;
+    box-shadow: none !important;
+  }
+  * {
+    color: #000 !important;
+    background: transparent !important;
+  }
+}
