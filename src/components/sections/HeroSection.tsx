@@ -2,10 +2,10 @@ import Icon from "@/components/ui/icon";
 import { ScrollReveal } from "./shared";
 
 const STATS = [
-  { value: "$32.8B", label: "мировой рынок" },
-  { value: "5.6%",  label: "CAGR до 2035" },
-  { value: "82%",   label: "водителей в Навигаторе" },
-  { value: "30 мин",label: "SLA в городе" },
+  { value: "47M",    label: "легковых авто в России" },
+  { value: "14 лет", label: "средний возраст авто РФ" },
+  { value: "82%",    label: "водителей в Навигаторе" },
+  { value: "30 мин", label: "SLA в городе" },
 ];
 
 export default function HeroSection() {
@@ -32,7 +32,7 @@ export default function HeroSection() {
 
         <ScrollReveal delay={200}>
           <p className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-4" style={{ color: 'rgba(255,255,255,0.65)' }}>
-            Помощь на дорогах по подписке
+            С заботой о вашем авто
           </p>
         </ScrollReveal>
 
