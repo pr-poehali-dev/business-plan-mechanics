@@ -9,26 +9,11 @@ export const NAV_SECTIONS = [
   { id: "marketing",        label: "Маркетинг"  },
   { id: "risks",            label: "Риски"      },
   { id: "pitch",            label: "Показатели" },
+  { id: "invest",           label: "Инвестиции" },
   { id: "team",             label: "Об авторе"  },
 ];
 
-/* ── useInView (старый хук, используется в секциях) ── */
-export function useInView(threshold = 0.12) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { setInView(true); obs.disconnect(); }
-    }, { threshold });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, inView };
-}
-
-/* ── ScrollReveal — новый компонент анимации ── */
+/* ── ScrollReveal ── */
 export function ScrollReveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);

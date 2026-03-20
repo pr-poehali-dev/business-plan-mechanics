@@ -109,6 +109,153 @@ function KpiSection() {
   );
 }
 
+// ─── ИНВЕСТИЦИОННОЕ ПРЕДЛОЖЕНИЕ ─────────────────────────────────────────────────
+
+const USE_OF_FUNDS = [
+  { icon: "Users",        label: "Команда мастеров",        pct: 38, amount: "₽6.8M",  color: "#4F9EFF",
+    desc: "Найм 50 мастеров, обучение, сертификация, форменное оснащение" },
+  { icon: "Cpu",          label: "Платформа и телематика",  pct: 28, amount: "₽5.0M",  color: "#A78BFA",
+    desc: "MVP-приложение, OBD-блоки, диспетчерская система, AI-предикция" },
+  { icon: "Truck",        label: "Техника и оборудование",  pct: 20, amount: "₽3.6M",  color: "#FFD700",
+    desc: "4 эвакуатора, 12 лёгких бригад, специнструмент и ЗИП-комплекты" },
+  { icon: "Megaphone",    label: "Маркетинг и запуск",      pct: 14, amount: "₽2.6M",  color: "#FC3F1D",
+    desc: "Первые 2 000 подписчиков, реферальная программа, PR в сообществах" },
+];
+
+const FINANCIALS = [
+  { year: "2026",  arr: "₽410M",  margin: "12%",   color: "#4F9EFF",  note: "Пилот → Регионы" },
+  { year: "2027",  arr: "₽2.9B",  margin: "27%",   color: "#A78BFA",  note: "5 городов-млн." },
+  { year: "2028",  arr: "₽9.5B",  margin: "38%",   color: "#FFD700",  note: "Федеральный охват" },
+];
+
+const DEAL_TERMS = [
+  { label: "Раунд",               value: "Pre-Seed",             icon: "Layers" },
+  { label: "Ищем",                value: "₽18M",                 icon: "DollarSign" },
+  { label: "Оценка (pre-money)",  value: "₽120M",                icon: "BarChart2" },
+  { label: "Доля",                value: "13%",                  icon: "PieChart" },
+  { label: "IRR проекта",         value: "47%",                  icon: "TrendingUp" },
+  { label: "Горизонт выхода",     value: "3–4 года",             icon: "Calendar" },
+  { label: "Формат участия",      value: "Деньги + экспертиза",  icon: "Handshake" },
+  { label: "Точка безубыточности",value: "Q4 2026",              icon: "Target" },
+];
+
+function InvestSection() {
+  return (
+    <section id="invest" className="m-section relative overflow-hidden" style={{ background: 'var(--m-surface)' }}>
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-[0.03] pointer-events-none" style={{ background: '#4F9EFF' }} />
+      <div className="relative max-w-7xl mx-auto px-6">
+
+        <ScrollReveal>
+          <SectionLabel>Раздел 6 · Инвестиции</SectionLabel>
+          <SectionTitle>Инвестиционное<br /><span style={{ color: 'var(--m-yellow)' }}>предложение</span></SectionTitle>
+          <SectionSubtitle>
+            Pre-Seed раунд ₽18M на запуск пилота в Москве. IRR 47%, выход через 3–4 года при масштабировании на федеральный рынок.
+          </SectionSubtitle>
+        </ScrollReveal>
+
+        {/* Условия сделки */}
+        <ScrollReveal>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-14 mb-14">
+            {DEAL_TERMS.map((t, i) => (
+              <ScrollReveal key={t.label} delay={i * 60}>
+                <div className="m-card p-5 h-full">
+                  <div className="m-icon-box mb-3" style={{ width: 36, height: 36, borderRadius: 10 }}>
+                    <Icon name={t.icon} size={15} />
+                  </div>
+                  <div className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: 'var(--m-text3)' }}>{t.label}</div>
+                  <div className="font-black text-white text-lg">{t.value}</div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-14">
+
+          {/* Использование средств */}
+          <ScrollReveal delay={100}>
+            <div className="m-card p-8 h-full">
+              <h3 className="text-lg font-black uppercase tracking-tighter text-white mb-6">Использование средств</h3>
+              <div className="space-y-5">
+                {USE_OF_FUNDS.map((item) => (
+                  <div key={item.label}>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <Icon name={item.icon} size={14} style={{ color: item.color }} />
+                        <span className="text-sm font-black text-white">{item.label}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-black" style={{ color: item.color }}>{item.amount}</span>
+                        <span className="text-xs font-black" style={{ color: 'var(--m-text3)' }}>{item.pct}%</span>
+                      </div>
+                    </div>
+                    <div className="w-full rounded-full h-1.5 mb-1.5" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                      <div className="h-1.5 rounded-full transition-all" style={{ width: `${item.pct}%`, background: item.color, boxShadow: `0 0 8px ${item.color}60` }} />
+                    </div>
+                    <div className="text-xs" style={{ color: 'var(--m-text3)' }}>{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Финансовый прогноз */}
+          <ScrollReveal delay={200}>
+            <div className="m-card p-8 h-full flex flex-col">
+              <h3 className="text-lg font-black uppercase tracking-tighter text-white mb-6">Прогноз ARR по годам</h3>
+              <div className="space-y-4 flex-1">
+                {FINANCIALS.map((f) => (
+                  <div key={f.year} className="p-5 rounded-2xl" style={{ background: `${f.color}08`, border: `1px solid ${f.color}20` }}>
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <div className="text-[10px] font-black uppercase tracking-widest mb-0.5" style={{ color: f.color }}>{f.year} · {f.note}</div>
+                        <div className="text-2xl font-black text-white">{f.arr}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-[10px] font-black uppercase tracking-widest mb-0.5" style={{ color: 'var(--m-text3)' }}>EBITDA</div>
+                        <div className="text-2xl font-black" style={{ color: f.color }}>{f.margin}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 p-4 rounded-xl" style={{ background: 'rgba(255,204,0,0.06)', border: '1px solid rgba(255,204,0,0.15)' }}>
+                <div className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: 'var(--m-yellow)' }}>Мультипликатор для инвестора</div>
+                <div className="text-sm" style={{ color: 'var(--m-text2)' }}>
+                  При ARR ₽9.5B в 2028 и EV/ARR 2.5× оценка компании составит <strong className="text-white">₽23.75B</strong>.
+                  Возврат на ₽18M при доле 13% — <strong className="text-white">₽3.1B (×170)</strong>.
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* CTA */}
+        <ScrollReveal>
+          <div className="m-card p-10 text-center" style={{ border: '1px solid rgba(255,204,0,0.15)' }}>
+            <div className="text-[10px] font-black uppercase tracking-widest mb-3" style={{ color: 'var(--m-yellow)' }}>Готов к разговору</div>
+            <h3 className="text-3xl font-black uppercase tracking-tighter text-white mb-4">Давайте обсудим<br />детали</h3>
+            <p className="text-sm max-w-xl mx-auto mb-8" style={{ color: 'var(--m-text2)', lineHeight: 1.7 }}>
+              Пилот стартует в Q2 2026. Ищу стратегического партнёра или инвестора — с деньгами, экспертизой или обоими. Готов к NDA, due diligence и защите перед командой.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <a href="mailto:bgs1990st@mail.ru" className="m-btn-primary" style={{ fontSize: 12, padding: '14px 28px' }}>
+                Написать инвестору
+                <Icon name="ArrowRight" size={14} />
+              </a>
+              <a href="tel:+79145145303" className="m-btn-secondary" style={{ fontSize: 12, padding: '14px 28px' }}>
+                <Icon name="Phone" size={14} />
+                +7 914 514-53-03
+              </a>
+            </div>
+          </div>
+        </ScrollReveal>
+
+      </div>
+    </section>
+  );
+}
+
 // ─── ОБ АВТОРЕ ─────────────────────────────────────────────────────────────────
 
 const AUTHOR_STRENGTHS = [
@@ -217,6 +364,7 @@ export default function TeamProposal() {
   return (
     <>
       <KpiSection />
+      <InvestSection />
       <TeamSection />
     </>
   );
