@@ -3,27 +3,30 @@ import { SectionLabel, SectionTitle, SectionSubtitle, ScrollReveal } from "./sha
 
 // ─── KPI ПЕРВОГО ГОДА ──────────────────────────────────────────────────────────
 
+// Март 2026 — время идёт. Пилот стартует в Q2 2026.
+// KPI на конец 2026 года (декабрь 2026).
+// ARR скорректирован: 40 000 подп. × ₽780/мес × 12 мес ≈ ₽374M + B2B ≈ ₽410M
 const KPIS = [
-  { icon: "Users", category: "Подписчики", color: "#4F9EFF",
+  { icon: "Users", category: "Подписчики (декабрь 2026)", color: "#4F9EFF",
     items: [
-      { label: "Частные подписчики (конец года)", target: "40 000",   stretch: "70 000" },
-      { label: "Корпоративных парков подключено", target: "150",       stretch: "300" },
-      { label: "Средний чек",                    target: "₽620/мес",  stretch: "₽750/мес" },
-      { label: "Отток подписчиков",              target: "< 5%/мес",  stretch: "< 3%/мес" },
+      { label: "Частные подписчики (конец 2026 г.)", target: "40 000",   stretch: "70 000" },
+      { label: "Корпоративных парков подключено",     target: "150",       stretch: "300" },
+      { label: "Средний чек",                         target: "₽780/мес", stretch: "₽920/мес" },
+      { label: "Отток подписчиков",                   target: "< 5%/мес", stretch: "< 3%/мес" },
     ] },
   { icon: "Clock", category: "Операционные", color: "#FFD700",
     items: [
-      { label: "Время прибытия (Москва)",   target: "< 20 мин", stretch: "< 15 мин" },
-      { label: "Время прибытия (регионы)",  target: "< 35 мин", stretch: "< 25 мин" },
-      { label: "NPS (индекс лояльности)",   target: "> 55",     stretch: "> 70" },
-      { label: "Решение с первого выезда",  target: "> 85%",    stretch: "> 92%" },
+      { label: "Время прибытия (Москва)",  target: "< 20 мин", stretch: "< 15 мин" },
+      { label: "Время прибытия (регионы)", target: "< 35 мин", stretch: "< 25 мин" },
+      { label: "NPS (индекс лояльности)",  target: "> 55",     stretch: "> 70" },
+      { label: "Решение с первого выезда", target: "> 85%",    stretch: "> 92%" },
     ] },
   { icon: "TrendingUp", category: "Финансовые", color: "#A78BFA",
     items: [
-      { label: "ARR (годовая выручка)",      target: "₽240M",   stretch: "₽380M" },
-      { label: "Точка безубыточности",       target: "Q3 2026", stretch: "Q2 2026" },
-      { label: "EBITDA маржа (конец года)", target: "18%",     stretch: "25%" },
-      { label: "LTV:CAC",                    target: "> 3x",    stretch: "> 5x" },
+      { label: "ARR к декабрю 2026",       target: "₽410M",   stretch: "₽620M" },
+      { label: "Точка безубыточности",     target: "Q4 2026", stretch: "Q3 2026" },
+      { label: "EBITDA маржа (конец 2026)",target: "12%",     stretch: "22%" },
+      { label: "LTV:CAC",                  target: "> 3x",    stretch: "> 5x" },
     ] },
   { icon: "Cpu", category: "Технологические", color: "#FC3F1D",
     items: [
@@ -34,11 +37,12 @@ const KPIS = [
     ] },
 ];
 
+// Март 2026 — стартовая точка. Расписание скорректировано под реальные даты.
 const ROADMAP = [
-  { period: "Q2 2026", color: "#4F9EFF", title: "Пилот",    items: ["50 мастеров в Москве", "2 000 первых подписчиков", "Интеграция с навигатором"] },
-  { period: "Q3 2026", color: "#FFD700", title: "Масштаб",  items: ["200 мастеров", "15 000 подписчиков", "Запуск корп. тарифа (50 парков)"] },
-  { period: "Q4 2026", color: "#A78BFA", title: "Регионы",  items: ["СПб, Екатеринбург", "40 000 подписчиков", "Предиктивная диагностика"] },
-  { period: "2027",    color: "#FC3F1D", title: "Федерал",  items: ["5 городов-миллионников", "280 000 подписчиков", "ARR ₽1.8B"] },
+  { period: "Q2 2026", color: "#4F9EFF", title: "Пилот",    items: ["50 мастеров в Москве", "2 000 первых подписчиков", "MVP-приложение + OBD-интеграция"] },
+  { period: "Q3 2026", color: "#FFD700", title: "Масштаб",  items: ["200 мастеров, покрытие МКАД + 30 км", "15 000 подписчиков", "Запуск корп. тарифа (50 парков)"] },
+  { period: "Q4 2026", color: "#A78BFA", title: "Регионы",  items: ["СПб + Екатеринбург", "40 000 подписчиков", "Предиктивная диагностика v1.0"] },
+  { period: "2027",    color: "#FC3F1D", title: "Федерал",  items: ["5 городов-миллионников", "280 000 подписчиков", "ARR ₽2.9B, интеграция Авто.ру"] },
 ];
 
 function KpiSection() {
@@ -50,7 +54,7 @@ function KpiSection() {
           <SectionLabel>Показатели · Год 1</SectionLabel>
           <SectionTitle>Ключевые<br /><span style={{ color: 'var(--m-yellow)' }}>показатели</span></SectionTitle>
           <SectionSubtitle>
-            Цель — 40 000 частных подписчиков и среднее время прибытия менее 20 минут в Москве к концу 2026 года.
+            Пилот стартует в Q2 2026. Цель года — 40 000 частных подписчиков, 150 корпоративных парков и среднее время прибытия менее 20 минут по Москве.
           </SectionSubtitle>
         </ScrollReveal>
 
