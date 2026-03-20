@@ -7,6 +7,7 @@ import BusinessSections from "@/components/sections/BusinessSections";
 import TeamProposal from "@/components/sections/TeamProposal";
 import LichniyMechanik from "@/components/sections/LichniyMechanik";
 import PresentationMode from "@/components/PresentationMode";
+import Watermark from "@/components/Watermark";
 import Icon from "@/components/ui/icon";
 
 const LOGO_URL = "https://cdn.poehali.dev/projects/c2ff7195-b676-4c24-b753-d3b14814bb67/files/3fbd0cd2-d423-4ed0-8305-6cf2aabbeaa2.jpg";
@@ -86,6 +87,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--m-black)' }}>
+      <Watermark />
       <Nav active={active} onPresent={() => setPresenting(true)} />
       <HeroSection />
       <SummarySection />
